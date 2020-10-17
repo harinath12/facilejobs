@@ -1,0 +1,133 @@
+<nav class="page-sidebar" data-pages="sidebar" ng-init="loadPlugin()">
+      <!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
+      <div class="sidebar-overlay-slide from-top" id="appMenu">
+        <div class="row">
+          <div class="col-xs-6 no-padding">
+            <a href="#" class="p-l-40"><img src="assets/img/demo/social_app.svg" alt="socail">
+            </a>
+          </div>
+          <div class="col-xs-6 no-padding">
+            <a href="#" class="p-l-10"><img src="assets/img/demo/email_app.svg" alt="socail">
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 m-t-20 no-padding">
+            <a href="#" class="p-l-40"><img src="assets/img/demo/calendar_app.svg" alt="socail">
+            </a>
+          </div>
+          <div class="col-xs-6 m-t-20 no-padding">
+            <a href="#" class="p-l-10"><img src="assets/img/demo/add_more.svg" alt="socail">
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
+      <!-- BEGIN SIDEBAR MENU HEADER-->
+      <div class="sidebar-header">
+        <img src="assets/img/logo_white.png" alt="logo" class="brand" data-src="assets/img/logo_white.png" data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">
+        <div class="sidebar-header-controls">
+          <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
+          </button>
+          <button type="button" class="btn btn-link d-lg-inline-block d-xlg-inline-block d-md-inline-block d-sm-none d-none" data-toggle-pin="sidebar"><i class="fa fs-12"></i>
+          </button>
+        </div>
+      </div>
+      <!-- END SIDEBAR MENU HEADER-->
+      <!-- START SIDEBAR MENU -->
+      <div class="sidebar-menu">
+        <!-- BEGIN SIDEBAR MENU ITEMS-->
+        <ul class="menu-items">
+          <li class="m-t-30 " ui-sref="dashboard">
+            <a  class="detailed">
+              <span class="title">Dashboard</span>
+            </a>
+            <span class="bg-success icon-thumbnail"><i class="pg-home"></i></span>
+          </li>
+          <li class="" ui-sref="jobs">
+            <a href="#jobs" class="detailed">
+              <span class="title">Jobs</span>
+              <span class="details ng-hide">12 New Jobs</span>
+            </a>
+            <span class="icon-thumbnail"><img src="assets/img/job.svg"></span>
+          </li>
+          <li class="" ui-sref="company">
+            <a href="#" ><span class="title">Company</span></a>
+            <span class="icon-thumbnail"><i class="fa fa-building-o" aria-hidden="true"></i>
+            </span>
+          </li>
+          <li ui-sref="users">
+            <a href="#"><span class="title">Users</span></a>
+            <span class="icon-thumbnail"><i class="fa fa-users" aria-hidden="true"></i>
+            </span>
+          </li>
+          <li ui-sref="package">
+            <a href="javascript:;"><span class="title">Packages</span></a>
+            <span class="icon-thumbnail"><i class="pg-social"></i></span>
+          </li>
+          <li ui-sref="category">
+            <a href="javascript:;"><span class="title">Category</span></a>
+            <span class="icon-thumbnail"><i class="fa fa-industry fa-flip-horizontal" aria-hidden="true"></i>
+            </span>
+          </li>
+          <li ng-click="menu.pagesidebar = !menu.pagesidebar">
+            <a href="javascript:;">
+              <span class="title">LOV</span>
+            </a>
+            <span class="icon-thumbnail"><i class=" fa fa-chevron-left" ng-class="{'fa fa-chevron-down': menu.pagesidebar,'fa fa-chevron-left': !menu.pagesidebar}"></i></span>
+            <ul ng-click="$event.stopPropagation();" class="sub-menu" ng-style="{display: menu.pagesidebar ? 'block' : 'none'}">
+              <li ui-sref="keywords">
+                <a href="javascript:;"><span class="title">Keywords</span></a>
+                <span class="icon-thumbnail">K</span>
+              </li>
+              <li ui-sref="skills">
+                <a href="javascript:;"><span class="title">Skills</span></a>
+                <span class="icon-thumbnail">s</span>
+              </li>
+              <li ui-sref="industry">
+                <a href="javascript:;"><span class="title">Industry</span></a>
+                <span class="icon-thumbnail"><i class="fa fa-industry" aria-hidden="true"></i></span>
+              </li>
+              <li ui-sref="education">
+                <a href="javascript:;"><span class="title">Education Level</span></a>
+                <span class="icon-thumbnail"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+              </li>
+              <li ui-sref="joblevel">
+                <a href="javascript:;"><span class="title">Job Level</span></a>
+                <span class="icon-thumbnail"><img src="assets/img/career.svg"></span>
+              </li>
+              <li ui-sref="benefits">
+                <a href="javascript:;"><span class="title">Benefits</span></a>
+                <span class="icon-thumbnail">b</span>
+              </li>
+              <li ui-sref="language">
+                <a href="javascript:;"><span class="title">Language</span></a>
+                <span class="icon-thumbnail">  <i class="fa fa-language" aria-hidden="true"></i>
+                </span>
+              </li>
+              <li ui-sref="location">
+                <a href="javascript:;"><span class="title">Location</span></a>
+                <span class="icon-thumbnail"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                </span>
+              </li>
+              <li ui-sref="designation">
+                <a href="javascript:;"><span class="title">Designation</span></a>
+                <span class="icon-thumbnail">d</span>
+              </li>
+            </ul>
+          </li>
+           <li ui-sref="pages">
+            <a href="javascript:;"><span class="title">Pages</span></a>
+            <span class="icon-thumbnail"><i class="fa fa-file" aria-hidden="true"></i>
+            </span>
+          </li>
+          <li ui-sref="contact_request">
+            <a href="javascript:;"><span class="title">Contact Request</span></a>
+            <span class="icon-thumbnail"><i class="fa fa-file" aria-hidden="true"></i>
+            </span>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <!-- END SIDEBAR MENU -->
+    </nav>

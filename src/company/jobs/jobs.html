@@ -1,0 +1,75 @@
+        <div class=" job_main_right">
+          <div class="row job_section">
+          <div class="col-sm-12">
+            <div class="jm_headings">
+                      <h2>Job Lists</h2>
+                    </div>
+                        <form>
+                        <div class="form-row">
+                          <div class="col position-re search">
+                            <input type="text" ng-model="search.$" class="form-control" placeholder="Search">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                        </form> 
+
+                        <div class="section-divider">
+                        </div>                   
+              <div class="table-cont">
+              
+               <table class="table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Vacancies</th>
+                    <th>Posted</th>
+                    <th>Expires</th>
+                    <th>Interest</th>
+                    
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  ng-repeat="job in totalItems | filter: pageInfo.search">
+                    <td>
+                      <h6>
+
+                        <a ui-sref="job-dashboard({id: job.id})">{{job.title}}</a>
+                      </h6>
+                      
+                    </td>
+                    <td>
+                      Active
+                    </td>
+                    <td>
+                      {{job.no_of_position}}
+                    </td>
+                    <td>
+                       {{job.posted_on}} 
+                    </td>
+                    <td>
+                       {{job.last_date}}
+                    </td>
+                    <td>
+                      {{job.no_of_applicants}}
+                    </td>
+                   
+                    <td>
+                      <a href="#"><i ui-sref="company.editjob({id: job.id})" class="fas fa-edit" data-toggle="tooltip" data-original-title="Edit Job" ></i></a> &nbsp;&nbsp;&nbsp;
+                      <a href="#"><i ng-click="delete_job(job.id);" class="fa fa-trash cp" data-toggle="tooltip" data-original-title="Delete Job" ></i></a>
+                    </td>
+                  </tr> 
+                  
+                               
+                </tbody>
+              </table>
+              </div>
+
+
+          </div>
+          </div>  
+           
+                    
+        </div>
+      

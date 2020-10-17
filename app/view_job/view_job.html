@@ -1,0 +1,278 @@
+<main role="main" class="home_margin-top">
+  <div class="sub_header"><img src="html/images/sub_job_search.png" class="img-fluid"></div>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="row v_post">
+        <div class="col-sm-9">
+          <div class="pho-file view_can">
+            <div class="p-photo">
+              <img style="width: 100%;max-height: 100%;" ng-src="{{job.company_image ? 'admin/api/uploads/'+job.company_image : 'html/images/company_placeholder.jpeg'}}">
+            </div>
+            <div class="pro-details">
+              <h3>{{job.title}}</h3>
+              <p class="exp">Published {{job.posted_on | timeago}}</p>
+            </div>
+            <div><i style="position: relative;top: 0;left: 0;" class="fa fa-map-marker"></i> {{job.location_name}}</div>
+          </div>                      
+        </div>
+        <div class="col-sm-3 text-right" ng-hide="loggedInUserInfo.user_type == 2">
+          <div class="view_can"><button class="btn btn-success" type="download" ng-click="apply_job();">Apply <i ng-if="job.applied" class="fa fa-check"></i></button></div>
+         <!--  <div class="view_can">
+            <button ng-click="shortlist_job()" class="btn btn-secondary"><span ng-hide="job.shortlisted" >Shortlist</span> 
+              <span ng-if="job.shortlisted">Shortlist <i  class="fa fa-check"></i></span>
+
+              {{candidate.shortlisted ? 'Shortlisted' : 'Shortlist'}}
+            </button> -->
+            <div class="view_can"  ng-click="shortlist_job()" ><button class="btn btn-secondary"><i class="fa fa-heart"></i>{{job.shortlisted ? 'Shortlisted' : 'Shortlist'}}</button></div>
+           <!--  </div> -->
+        </div>
+        <div class="col-sm-12 view_job" >
+          <span><i class="fa fa-eye"></i></span><span class="content">{{job.no_of_views}} Views</span>
+          <span><i class="fa fa-file-text"></i></span><span class="content">{{job.no_of_applicants}} Applicants</span>
+          <span><i class="fa fa-clock-o" aria-hidden="true"></i></span><span class="content">{{job.posted_on | timeago}}</span>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<div class="bg-gra">
+  <div class="container">
+    <div class="row container-fluid">
+      <div class="col-sm-8">
+        <div class="about">
+          <h5>Job Description</h5><hr>
+          <p>{{job.description}}</p>
+        </div>
+
+        <div>
+          <h5>Additional Info</h5>
+          <p>No of position: {{job.no_of_position}}</p>
+          <p>Location: {{job.location_name}}</p>
+          <p>Skills: {{job.skills_name}}</p>
+          <p>Tags or keywords: {{job.keywords_name}}</p>
+        </div>
+
+        <div>
+          <h5>About Company</h5>
+          <p><span>Walters University</span><span>2002 - 2004</span> </p>
+          <p>Masters In Fine Arts
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+            <span style="color: #46cc62;font-weight: bold;" class="cp" ui-sref="view_company({id: job.posted_by+'-'+job.company_slug_name})">View More about Company...</span>
+        </div>
+        
+      </div>
+      <div class="col-sm-4">
+        <div class="can_info">
+        <h4>Job Information</h4>
+        <div>
+          <img src="html/images/salary.svg">
+          <p>Offered Salary</p>
+          <p>{{job.salary}}$</p>
+        </div>
+        <div>
+          <img src="html/images/gender.svg">
+          <p>Gender</p>
+          <p>{{job.gender}}</p>
+        </div>
+        <div>
+          <img src="html/images/experience.svg">
+          <p>Industry</p>
+          <p>{{job.industry_name}}</p>
+        </div>
+        <div>
+          <img src="html/images/qualification.svg">
+          <p>Qualification</p>
+          <p>{{job.qualification_name}}</p>
+        </div>
+        <div>
+          <img src="html/images/career.svg">
+          <p>Career Level</p>
+          <p>{{job.career_level_name}}</p>
+        </div>
+      </div>
+
+        <div ng-hide="loggedInUserInfo.user_type == 2" class="job_apply view_can">
+          <button ng-click="apply_job()" class="btn btn-success" type="download">Apply <i ng-if="job.applied" class="fa fa-check"></i></button>
+        </div>        
+     
+
+      <div class="job_share ng-hide">
+        <h6>Share</h6>
+        <span><i class="fa fa-facebook-square" aria-hidden="true"></i>
+        </span>
+        <span><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+        </span>
+        <span><i class="fa fa-envelope" aria-hidden="true"></i>
+        </span>
+        <span><i class="fa fa-twitter-square" aria-hidden="true"></i>
+        </span>
+      </div>    
+      </div>      
+    </div>
+  </div>
+
+  <div class="container ng-hide">
+    <div class="row container-fluid">
+      <div class="col-sm-8">
+        <div class="title">
+          <h4>Related Jobs</h4>
+        </div>
+        <div class="can_info row">
+          <div class="po_img col-sm-2"></div>
+          <div class="v-details col-sm-10">
+            <h4 class="active">Accountant for Bank</h4>
+            <p> Published 2 years ago</p>
+            <p>Ho Chi Minh, Vietnam</p>
+          </div>
+        </div>
+        <div class="can_info row ">
+          <div class="po_img col-sm-2"></div>
+          <div class="v-details col-sm-10">
+            <h4 class="active">Accountant for Bank</h4>
+            <p> Published 2 years ago</p>
+            <p>Ho Chi Minh, Vietnam</p>
+          </div>
+        </div>        
+      </div>
+
+      <div class="col-sm-4 mg-top40">
+          <div class="can_info" style="height: 300px;">
+            <h5>Ad Banner</h5>
+          </div>        
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+<div class="modal apply-form-modal" tabindex="-1" role="dialog" id="applyjobModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">You are applying for <b>{{job.title}}</b></h5>
+        </div>
+        <div class="modal-body bg-gra">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <form name="jobapplyform" class="form-horizontal">
+
+                  <div class="resume-header">
+                    <div class="row">
+                        <!-- Resume Avatar -->
+                        <div class="col-sm-3 col-xs-4 user-pic">
+                            <div class="avatar img-circle text-center">
+                                <div class="avatar-sample">
+                                    <i class="fa fa-3x fa-user"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-9 col-xs-8">
+                            <!-- Full Name -->
+                            <h4 class="m-t-md">
+                                <span id="app-fullName">{{loggedInUserInfo.profile ? loggedInUserInfo.profile.name : loggedInUserInfo.username}}</span>
+                            </h4>
+
+                            <!-- Job Title -->
+                            <div class="m-t-xs app-title">
+                                <a href="javascript:void(0);" class="editable editable-click" data-placeholder="Professional headline. Ex: Project manager" tabindex="1" id="app-title" data-optional="1">{{loggedInUserInfo.profile.job_title}}</a>
+                            </div>
+
+                            <input type="hidden" name="appJobTitle" id="appJobTitle" value="Business Manager">
+                        </div>
+                    </div>
+                </div>
+
+
+                  <div id="resume" class="resume-body">
+                    <!-- Email Address -->
+                    <div class="row form-group m-t-sm">
+                        <label for="app-resume" class="col-sm-3 col-xs-12 control-label">Email</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <div class="form-control-static" id="app-email">{{loggedInUserInfo.email}}</div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="row form-group m-t-sm">
+                        <label for="app-resume" class="col-sm-3 col-xs-12 control-label">Phone number</label>
+                        <div class="col-sm-9 col-xs-12">
+                            <div class="form-control-static phone-number">
+                               <div class="form-control-static">{{loggedInUserInfo.profile.phonenumber}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select Resume Block -->
+                    <div class="row form-group awe-check select-resume">
+                        <label for="app-resume" class="col-sm-3 col-xs-12 control-label">
+                            Resume
+                          </label>
+
+                        <div class="col-sm-9 col-xs-12">
+                            <div id="applyResume" class="m-t-xs">
+                              <div class="row select-resume__item" ng-repeat="res in loggedInUserInfo.profile.resume_list">
+                                <div class="col-sm-12">
+                                  <div class="radio radio-success">
+                                    <input tabindex="5" type="radio" name="resumeApply" id="options{{res.updated_on}}" value="8946130" data-type="last_attachment">
+                                    <label for="options{{res.updated_on}}">
+                                      <span>{{res.resume}}</span>
+                                      <span class="small gray-light select-resume__hint"> ({{res.updated_on | date: 'short'}})</span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Upload New CV -->
+                            <div class="row select-resume__item select-resume__upload-cv m-t-xs">
+                                <div class="col-sm-12">
+                                    <div class="radio radio-success">
+                                        <input tabindex="7" type="radio" name="resumeApply" id="optionsRadios3" value="newAttachment" data-type="new_attachment">
+
+                                        <label trigger-upload="resumeUpload" for="optionsRadios3"><a class="relative">Upload new CV
+                                                <i class="glyphicon glyphicon-upload" data-toggle="tooltip" title="Replace" data-placement="top"></i></a>
+                                        </label>
+
+                                        <input format="doc,docx,pdf" file-upload type="file" id="resumeUpload" ng-model="pageInfo.resume" after-upload="saveResume()" name="">
+
+                                        <span id="resume-filename" class="small m-l-md gray text-clip-50"></span>
+                                    </div>
+
+                                    <span class="small gray-light pull-left m-l-lg m-r-lg">You can only attach .doc, .docx, and .pdf files that are less than 2MB in size.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cover Letter -->
+                    
+                    <span id="errorAppSystem" style="display: none;" class="error-message"></span>
+                </div>
+                  <div class="modal-footer">
+                <input type="hidden" name="appliedType" id="appliedType">
+
+                <div class="pull-right">
+
+                    <button type="button" class="btn btn-defautl btn-outline track-event" data-evt-type="cancel-apply" tabindex="11" data-dismiss="modal">Cancel</button>
+
+                    <button ng-click="apply_now()" type="button"  class="btn btn-success " tabindex="11">Send application</button>
+
+                    <button type="submit" id="applySendingProcessBtn" style="display: none;" class="btn btn-default" tabindex="10" disabled="">
+                        <img src="https://images.vietnamworks.com/loading.gif" alt=""> Sending
+                    </button>
+                </div>
+            </div>
+                </form>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

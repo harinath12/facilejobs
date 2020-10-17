@@ -1,0 +1,78 @@
+<div class="row ng-hide">
+  <div class="col-sm-6">
+     <h5>Settings</h5>
+  </div>
+  </div>
+<div class=" container-fluid   container-fixed-lg bg-white">
+  <div class="settingscard card card-transparent">
+    <div class="card-body">
+      <form role="form" name="changpform" novalidate="" ng-class="{submitted: pageInfo.submitted2}">
+      
+        <h4>Change Password</h4>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.old_password.$invalid}">
+                <label>Old Password</label>
+                <input ng-pattern="/^.{6,}$/"  name="old_password" required="" ng-model="changep_form_data.old_password" type="Password" class="form-control">
+              </div>
+            </div>
+          </div>   
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.password.$invalid}">
+                <label>New Password</label>
+                <input ng-pattern="/^.{6,}$/"  name="password" required="" ng-model="changep_form_data.password" type="password" class="form-control">
+              </div>
+            </div> 
+          </div>   
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.cpassword.$invalid}">
+                <label>Confirm Password</label>
+                <input ng-pattern="/^.{6,}$/"  name="cpassword" required="" compare-to="changep_form_data.password" ng-model="changep_form_data.cpassword" type="password" class="form-control">
+                <p ng-if="changpform.cpassword.$error.compareTo" style="color: red">Retype new password</p>
+              </div>
+            </div> 
+          </div>   
+               
+      
+        <button ng-click="change_password(changpform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Save</button>
+       
+         </form>
+        <div class="ng-hide">
+            <form role="form" name="deleteform" novalidate="" ng-class="{submitted: pageInfo.submitted2}">
+                
+                  <h4>Delete Profile</h4>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group form-group-default" ng-class="{invalid: deleteform.password.$invalid}">
+                          <label>Enter Your Login Password to Confirm</label>
+                          <input ng-pattern="/^.{6,}$/"  name="old_password" required="" ng-model="delete_form_data.password" type="Password" class="form-control">
+                        </div>
+                      </div>
+                    </div>         
+                  <button ng-click="deletepModal" id="add-app" type="button" class="btn btn-primary  btn-cons">Delete</button>
+            </form>
+        </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="deletepModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Are you Sure!</h5>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <h5>Are you sure! You want to delete your profile.</h5>
+          <p>This can't be undone!</p>
+          <button type="submit" class="btn btn-primary">Yes</button>
+          <button type="submit" class="btn btn-primary">No</button>
+          </div>
+        </div>
+      </div>
+    </div>

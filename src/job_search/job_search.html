@@ -1,0 +1,180 @@
+<header class="header_01 header_inner">
+  <div class="header_main">
+    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+    </div>
+    <div class="header_btm">
+      <h2>Browse Jobs</h2>
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="job_container">
+    <div class="container">
+      <div class="row job_main">
+        <div class="sidebar">
+          <ul class="user_navigation">
+            <li class="is-active">
+              <a href="#"><i class="fas fa-search"></i> Browse Jobs </a>
+              <a class="filter_btn" href="#sidebar_filter_option"> 
+                <i class="fas fa-filter"></i>
+                <i class="fas fa-times"></i>
+              </a>
+            </li>
+            <li>
+            <form id="#sidebar_filter_option" class="filter_option">
+              
+              <div class="form-group">
+                <label>Keywords</label>
+                <div class="field">
+                    <i class="fas fa-briefcase"></i>
+                    <select ng-model="pageInfo.filter.title" ng-change="fiterResult();" select2 name="title">
+                      <option value="">Select Title, Skills, Keyword</option>
+                      <option ng-repeat="key in filter_data | orderBy: 'title'" value="{{key.title}}">{{key.title}}</option>
+                    </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label>Location</label>
+                <div class="field">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select ng-model="pageInfo.filter.location" ng-change="fiterResult();" select2 name="location">
+                      <option value="">Select Location</option>
+                      <option ng-repeat="key in lov.location track by $index" value="{{key.title}}">{{key.title}}</option>
+                    </select>
+                </div>
+              </div>  
+              
+              <div class="form-group">
+                <label>Category</label>
+                <div class="field">
+                    <i class="fas fa-briefcase"></i>
+                    <select ng-model="pageInfo.filter.category" ng-change="fiterResult();" select2 name="category">
+                      <option value="">Select Category</option>
+                      <option ng-repeat="cat in category track by $index" value="{{cat.id}}">{{cat.name}}</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Salary</label>
+                <div class="field">
+                  <input ng-model="pageInfo.filter.salary" ng-change="fiterResult();" type="text" placeholder="e.g. 10000" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Tags</label>
+                <div class="field">
+                  <div class="form-group custom_checkboxes">
+                    <label style="margin-right: 5px;" class="custom_checkbox" ng-repeat="key in lov.keywords | orderBy: '-no_of_job'" ng-show="key.no_of_job != 0" for="tag-{{key.id}}" ng-click="pageInfo.filter.title=key.title;fiterResult();">
+                      <input type="checkbox" name="usertype" id="tag-{{key.id}}" value="job seeker">
+                      <span><i class="fas fa-check"></i>{{key.title}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+            </li>
+            </ul>
+            <div  ng-show="loggedInUserInfo.id && loggedInUserInfo.user_type == 3">
+              <h5>Organize and Manage</h5>
+              <ul class="user_navigation">
+                <li>
+                    <a ui-sref="user.applied_job"><i class="fas fa-star"></i> View My Jobs Applied</a>
+                  </li>
+                  <li>
+                    <a ui-sref="user.shortlist_job"><i class="fas fa-star"></i> View My Stared Jobs</a>
+                  </li>
+                  <!-- <li>
+                    <a ui-sref="user.alerts"><i class="fas fa-star"></i> Job Matches</a>
+                  </li> -->
+              </ul>
+              <h5>Account</h5>
+              <ul class="user_navigation">    
+                  <li>
+                    <a ui-sref="user.profile"><i class="fas fa-user"></i> Update My Profile</a>
+                  </li>
+                  <li>
+                    <a ui-sref="user.settings"><i class="fas fa-key"></i>Change Password</a>
+                  </li>
+                  <li>
+                    <a href="#" ng-click="logout()"><i class="fas fa-power-off"></i> Logout</a>
+                  </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class=" job_main_right">
+          <div class="jm_headings">
+              <h5>Browse Jobs </h5>
+          </div>
+          <div class="row full_width featured_box_outer">
+            <div class="col-sm-12" ng-repeat="job in jobs">
+              <div class="featured_box ">
+                
+                <div class=" col-md-10">
+                  <div class="row"> 
+                      <div class="col-md-2">
+                        <div class="fb_image">
+                          <img width="150px;"  alt="brand logo" ng-src="{{job.company_image ? 'admin/api/uploads/'+job.company_image : 'html/images/company_placeholder.jpeg'}}">
+                        </div>
+                      </div>
+                      <div class="col-md-10 fb_content" style="margin: 0;">
+                        <h4 style="display: inline-block;" ui-sref="view_job({id: job.id})" class="active cp"><a ui-sref="view_job({id: job.id})">{{job.title}}</a> <span ng-if="job.is_featured == 1" class="varified"><i class="fas fa-check"></i>Verified</span></h4>
+                        <ul>
+                          <li>
+                            <i class="fas fa-map-marker-alt"></i> {{job.location_name}}
+                          </li>
+                          <li>
+                             <i class="fas fa-clock"></i> {{job.posted_on | timeago}}
+                          </li>
+                          <li>
+                            <i class="fas fa-money-bill-alt"></i> {{job.salary}}
+                          </li>
+                        </ul>
+                      </div>
+                  </div>              
+                  
+                  <div style="font-size: 13px;">
+                    {{job.description | shortContent:200}}
+                  </div>
+                  
+                  <div class="row" style="font-size: 14px; margin-top: 10px; color:#ff6158;">
+                    <div class="col-md-4">
+                      Company : <span style="color: #666">{{job.company_name}}</span>
+                    </div>
+                    <div class="col-md-4">
+                      Job Type: <span style="color: #666">{{job.type}}</span>
+                    </div>
+                    <div class="col-md-4">
+                      Category: <span style="color: #666">{{category_data[job.category] ? category_data[job.category].name : '-'}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="fb_action col-md-2">
+                  <a style="margin-top: 50px;" class="btn btn-primary" ui-sref="view_job({id: job.id})">View Job</a>
+                </div>
+              </div>
+            </div>
+            <div ng-if="jobs.length == 0">No Jobs found</div>
+          </div>
+          <div class="section-divider">
+          </div>
+          <div ng-include="'src/elements/pagination.html'" class="pagination_container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

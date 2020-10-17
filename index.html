@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="indexController">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.0.1">
+  <title ng-bind="currentStateDetails.label+' | Facilejobs'">Facilejobs - Find better Jobs</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700&display=swap&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="new_html/assets/css/all.min.css">
+  <link href="new_html/assets/css/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="new_html/assets/css/aos.css" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link rel="stylesheet" href="new_html/assets/css/bootstrap.min.css">
+  <link href="new_html/assets/css/select2.min.css" rel="stylesheet" />
+  <link href="new_html/assets/css/owl.carousel.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="new_html/assets/css/style.css">
+  <link rel="stylesheet" href="new_html/assets/css/color-1.css">
+  <link rel="stylesheet" href="new_html/assets/css/icon.css">
+  <link rel="stylesheet" href="new_html/assets/css/custom_style.css">
+  <link rel="stylesheet" href="new_html/assets/css/toast.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body class="{{currentState}}_page ">
+  <ui-view></ui-view>
+  <footer ng-include="'src/elements/footer.html'"></footer>
+  
+
+
+  <div class="preloader" ng-if="preloader">
+    <span class="spinner-border spinner-border-sm"></span>
+  </div>
+  
+
+  <script src="admin/assets/libs/angular-1.6.4/angular.min.js"></script>
+  <script src="admin/assets/libs/angular-ui-router.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+  <script src="admin/assets/libs/ui-bootstrap-tpls-2.5.0.js"></script>
+  <!-- <script src="new_html/assets/js/bootstrap.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- <script src="new_html/assets/js/jquery.toast.js"></script>
+  <script src="new_html/assets/js/underscore.js"></script> -->
+
+  <script src="new_html/assets/js/tinymce.min.js?apiKey=oo8ih76xnovneh48ppo5289y7wcccqaxsr8ionjjqo6e3enk"></script>
+  <script src="new_html/assets/js/tinymce-angular.js"></script>
+
+  <script src="src/app.config.js"></script>
+  <script src="src/shared/http.service.js"></script>
+  <script src="src/shared/api.service.js"></script>
+  <script src="src/index.controller.js"></script>
+  <script src="src/home/home.controller.js"></script>
+  <script src="src/login/login.controller.js"></script>
+  <script src="src/signup/signup.controller.js"></script>
+  <script src="src/companies/companies.controller.js"></script>
+  <script src="src/user/user.controller.js"></script>
+  <script src="src/user/dashboard/dashboard.controller.js"></script>
+  <script src="src/user/profile/profile.controller.js"></script>
+  <script src="src/user/resume/resume.controller.js"></script>
+  <script src="src/user/shortlist_job/shortlist_job.controller.js"></script>
+  <script src="src/user/applied_job/applied_job.controller.js"></script>
+  <script src="src/user/alerts/alerts.controller.js"></script>
+  <script src="src/user/settings/settings.controller.js"></script>
+  <script src="src/user/following_employers/following_employers.controller.js"></script>
+  <script src="src/company/dashboard/dashboard.controller.js"></script>
+  <script src="src/company/profile/profile.controller.js"></script>
+  <script src="src/company/jobs/jobs.controller.js"></script>
+  <script src="src/company/jobpost/jobpost.controller.js"></script>
+  <script src="src/company/jobapplicants/jobapplicants.controller.js"></script>
+  <script src="src/company/shortlist_candidates/shortlist_candidates.controller.js"></script>
+  <script src="src/company/settings/settings.controller.js"></script>
+  <script src="src/company/company.controller.js"></script>
+  <script src="src/view_candidate/view_candidate.controller.js"></script>
+  <script src="src/view_company/view_company.controller.js"></script>
+  <script src="src/job_search/job_search.controller.js"></script>
+  <script src="src/view_job/view_job.controller.js"></script>
+  <script src="src/packages/packages.controller.js"></script>
+  <script src="src/company_search/company_search.controller.js"></script>
+  <script src="src/candidate_search/candidate_search.controller.js"></script>
+  <script src="src/company/mypackage/mypackage.controller.js"></script>
+  <script src="src/job-dashboard/job-dashboard.controller.js"></script>
+  <script src="src/contactus/contactus.controller.js"></script>
+  <script src="src/payment/payment.controller.js"></script>
+  <script src="src/pages/pages.controller.js"></script>
+  <script src="new_html/assets/js/jquery-3.4.1.min.js"></script>
+  <script src="new_html/assets/js/select2.min.js"></script>
+  <script src="new_html/assets/js/bootstrap.min.js"></script>
+  <script src="new_html/assets/js/owl.carousel.min.js"></script>
+  <script src="new_html/assets/js/aos.js"></script>
+  <script src="new_html/assets/js/custom.js"></script>
+  <script src="new_html/assets/js/jquery.toast.js"></script>
+  <script src="new_html/assets/js/underscore.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.ckeditor.com/4.5.3/full/ckeditor.js"></script>
+    <script src="https://rawgit.com/lemonde/angular-ckeditor/master/angular-ckeditor.js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '255083542240229',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v7.0'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+</body>
+
+</html>

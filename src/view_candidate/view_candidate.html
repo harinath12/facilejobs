@@ -1,0 +1,153 @@
+<header class="header_01 header_inner">
+  <div class="header_main header_job_single_main">
+    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+    </div>
+    <div class="header_btm header_job_single">
+  <div class="header_job_single_inner container">
+    <div class="poster_staff">
+      <img  alt="brand logo" src="{{'admin/api/uploads/'+candidate.profile_image}}">
+    </div> 
+    <div class="poster_details">
+      <h2>{{candidate.name}}  <span class="varified"><i class="fas fa-check"></i>Verified</span></h2>
+      <h5>{{candidate.job_title}}</h5>
+      <div class="staff_rating">
+        <span>4.5</span>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+      </div>    
+    </div>
+    <div class="poster_action">
+      <a class="addtofav" title="add to favourite" href="#"><i class="far fa-heart"></i></a>
+      <a class="btn btn-third" href="#">Hire me</a>
+      
+    </div>
+  </div>
+       
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="single_job">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row ">
+            <div class="col-md-12 single_job_main">
+              <h4>About Me</h4><hr>
+            <p>{{candidate.aboutme}}</p>
+            </div>
+            <div class="section-divider"></div>
+            <div class="col-md-12 single_job_main">
+             <h4>Education</h4>
+              <div class="emp_list" ng-repeat="edu in candidate.education">
+                <h5 class="title">{{edu.education}} {{edu.course}} {{edu.specialization}}</h5>
+                <h6>{{edu.institute}}</h6>
+                <p><b>Pass Out:</b> {{edu.year}}({{edu.type}}) <b>Grade:</b> {{edu.grade}}</p>
+              </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            <div class="col-md-12 single_job_main">
+             <h4>Experience</h4>
+            <div class="emp_list" ng-repeat="exp in candidate.experience_info">
+                <h5 class="title">{{exp.designation}}</h5>
+                <h6 class="res_subtitle">{{exp.organization}}</h6>
+                <p ng-if="exp.current_org == 'yes'">{{month[exp.start_month]}} {{exp.start_year}} to Present</p>
+                <p ng-if="exp.current_org == 'no'">{{month[exp.start_month]}} {{exp.start_year}} to {{month[exp.end_month]}} {{exp.end_year}}({{exp.dif}})</p>
+                <p ng-if="exp.description.length <= 250 || exp.show_full">{{exp.description}}</p>
+                <p ng-if="exp.description.length > 250 && !exp.show_full">{{exp.description.slice(0,250)}}...<span style="color: blue" class="cp tdu" ng-click="exp.show_full = true">Read More</span></p>
+            </div> 
+            </div>
+            <div class="section-divider"></div>
+            <div class="col-md-12 single_job_main">
+              <h4>Skills</h4>
+              <div ng-repeat="sk in candidate.skills_info">
+                <h5 class="title">{{sk.skill}}<span ng-if="sk.primary == 'yes'">(Primary)</span></h5>
+                <h6>{{sk.year}} years {{sk.month}} months</h6>
+                  <div class="progress-bar">
+                    <div style="width:{{sk.evaluation}}%;">{{sk.evaluation}}%</div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-3 ">
+          <div class="single-job-sidebar">
+        <div class="sjs_box">
+          <h3>Employee Summary</h3>
+              <ul class="single-job-sidebar-features">
+                <li>
+                  <i class="fas fa-phone-alt"></i>
+                  <h6>Phone Number</h6>
+                  <p>{{candidate.phonenumber}}</p>
+                </li>
+                <li>
+                  <i class="fas fa-envelope"></i>
+                  <h6>Email</h6>
+                  <p>{{candidate.email}}</p>
+                </li>
+                <li>
+                  <i class="fas fa-calendar-alt"></i>
+                  <h6>Date Of Birth</h6>
+                  <p>{{candidate.dob.split('T')[0]}}</p>
+                </li>
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <h6>Current Location</h6>
+                  <p>{{candidate.location}}</p>
+                </li>
+               <li>
+                  <i class="fas fa-money-bill-alt"></i>
+                  <h6>Current Salary</h6>
+                  <p>{{candidate.salary}}</p>
+                </li>
+                
+              </ul>
+        </div>            
+            <div class="sjs_box">
+              <h3>Job Preferences</h3>
+              <ul class="single-job-sidebar-features">
+                <li>
+                  <i class="fas fa-money-bill-alt"></i>
+                  <h6>Prefered Salary</h6>
+                  <p>{{candidate.preferred_salary}}</p>
+                </li>
+                <li>
+                  <i class="fas fa-map-marker-alt"></i>
+                  <h6>Prefered Location</h6>
+                  <p>{{candidate.preferred_location}}</p>
+                </li>
+                <li>
+                  <i class="fas fa-user-md"></i>
+                  <h6>Prefered Job level</h6>
+                  <p ng-repeat='pjl in candidate.preferred_joblevel'>{{pjl.}}</p> 
+                </li>                
+              </ul>
+            </div>
+              
+            
+          </div>
+          <div class="sjs_box sjs_box_action">
+              <h3>Attachments</h3>
+              <a target="_blank" class="download-cv" href="admin/api/uploads/{{candidate.resume_list[candidate.resume_list.length-1].resume}}" download="{{candidate.resume_list[resume_list.length-1].resume}}"><i class="fas fa-file-download"></i><span>Resume</span></a>
+
+              <a target="_blank" class="download-cv"  ng-repeat="list in candidate.Adddoc_list" href="admin/api/uploads/{{list.resume}}" download="{{list.resume}}"><i class="fas fa-file-download"></i><span>Additional Document</span></a>
+            </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

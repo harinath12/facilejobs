@@ -1,0 +1,149 @@
+<div class="jumbotron" data-pages="parallax">
+  <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
+    <div class="inner">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" ui-sref="dashboard">Home</a></li>
+        <li class="breadcrumb-item active">{{currentStateDetails.label}}</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid   container-fixed-lg bg-white">
+  <div class="card card-transparent">
+    <div class="card-header">
+      <div class="card-title">{{currentStateDetails.label}}&nbsp;&nbsp;&nbsp;<button id="show-modal" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add New
+                    </button>
+      </div>
+      <div class="pull-right">
+        <div class="col-xs-12">
+          <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="export-options-container"></div>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped" id="tableWithExportOptions">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Parent</th>
+            <th>Description</th>
+            <th>No. of Jobs</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="gradeX" ng-repeat="cat in totalItems" repeat-end="initTooltip()">
+            <td>{{$index + 1}}</td>
+            <td><img width="50" ng-if="cat.image" src="{{'api/uploads/'+cat.image}}"><br>{{cat.name}}</td>
+            <td>{{cat.parent_details.name}}</td>
+            <td>{{cat.description}}</td>
+            <td>{{cat.no_of_job}}</td>
+            <td ng-if="cat.status == 0">
+              <i ng-click="change_status_cat(1, cat.id);" class="inactive_dt cp fa fa-times"></i>
+            </td>
+            <td ng-if="cat.status == 1">
+              <i ng-click="change_status_cat(0, cat.id);" class="active_dt cp fa fa-check"></i>
+            </td>
+            <td>
+              <i ng-click="edit_cat(cat);" class="fa fa-pencil cp" data-toggle="tooltip" data-original-title="Edit Category" ></i> &nbsp;&nbsp;&nbsp;
+              <i ng-click="delete_cat(cat.id);" class="fa fa-trash cp" data-toggle="tooltip" data-original-title="Delete Category" ></i>
+            </td>          </tr>
+          <tr ng-if="totalItems.length == 0"><td colspan="7">No Categories</td></tr>
+        </tbody>
+      </table>
+      <div class="row ng-hide">
+        <div class="col-sm-5">
+          <div class="dataTables_info">Showing 1 to 10 of 57 entries
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <!-- <paging-control paging-size="pagingSize" noofitem="dataPerPage" total-items="totalItems" display-items="displayItems"></paging-control> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteAppModal" tabindex="-1" role="dialog" aria-labelledby="deleteAppModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form role="form" name="catform" novalidate="" ng-class="{submitted: pageInfo.submitted}">
+      <div class="modal-header clearfix ">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+        </button>
+        <h4 class="p-b-5"><span class="semi-bold">Delete</span> Category</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this Category?</p>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="delete_cat2()" id="add-app" type="button" class="btn btn-primary  btn-cons">Ok</button>
+        <button type="button" class="btn btn-cons" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="addNewAppModal" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form role="form" name="catform" novalidate="" ng-class="{submitted: pageInfo.submitted}">
+      <div class="modal-header clearfix ">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+        </button>
+        <h4 class="p-b-5"><span class="semi-bold">{{cat_form_data.id ? 'Edit' : 'New'}}</span> Job</h4>
+      </div>
+      <div class="modal-body">
+        <p class="small-text">Create a new Category using this form, make sure you fill them all</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: catform.name.$invalid}">
+                <label>Name</label>
+                <input name="name" required="" ng-model="cat_form_data.name" type="text" class="form-control">
+              </div>
+            </div>
+             <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: catform.parent.$invalid}">
+                <label>Parent</label>
+                 <select  name="parent" required class="form-control select2multiple" ng-model="cat_form_data.parent">
+                  <option value="0">Parent</option>
+                  <option ng-repeat="cat in totalItems" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+              </div>
+            </div> 
+          </div>         
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group form-group-default" ng-class="{invalid: catform.description.$invalid}">
+                <label>Description</label>
+                <textarea style="height: auto;" name="description" ng-model="cat_form_data.description"  id="appDescription" type="text" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="profile_picture">
+                <img ng-if="cat_form_data.image" src="{{'api/uploads/'+cat_form_data.image}}">
+              </div>
+              <button trigger-upload="profile_picture" class="btn btn-primary">Upload Image</button>
+              <input file-upload type="file" id="profile_picture" name="profile_picture" ng-model="cat_form_data.image" required>
+              
+          </div>
+        </div>
+
+      <div class="modal-footer">
+        <button ng-click="save_cat(catform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Add</button>
+        <button type="button" class="btn btn-cons" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

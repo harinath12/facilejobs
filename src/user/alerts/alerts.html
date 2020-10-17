@@ -1,0 +1,68 @@
+<div class=" job_main_right">
+  <div class="row job_section">
+  <div class="col-sm-12">
+    <div class="jm_headings">
+      <h2>Job Matches</h2>
+    </div>
+  <form>
+      <div class="form-row">
+        <div class="col position-re search">
+          <input type="text" class="form-control" placeholder="Search">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+      </div>
+    </form>
+         
+  <div class="row full_width featured_box_outer">
+            <div class="col-sm-12" ng-repeat="job in applied_jobs | filter:search">
+              <div class="featured_box ">
+                
+                <div class=" col-md-12">
+                  <div class="row"> 
+                      <div class="col-md-2">
+                        <div class="fb_image">
+                          <img width="150px;"  alt="brand logo" ng-src="{{job.company_image ? 'admin/api/uploads/'+job.company_image : 'html/images/company_placeholder.jpeg'}}">
+                        </div>
+                      </div>
+                      <div class="col-md-10 fb_content" style="margin: 0;">
+                        <h4 style="display: inline-block;" ui-sref="view_job({id: job.id})" class="active cp"><a ui-sref="view_job({id: job.id})">{{job.title}}</a> <span ng-if="job.is_featured == 1" class="varified"><i class="fas fa-check"></i>Verified</span></h4>
+                        <ul>
+                          <li>
+                            <i class="fas fa-map-marker-alt"></i> {{job.location_name}}
+                          </li>
+                          <li>
+                             <i class="fas fa-clock"></i> {{job.posted_on | timeago}}
+                          </li>
+                          <li>
+                            <i class="fas fa-money-bill-alt"></i> {{job.salary}}
+                          </li>
+                        </ul>
+                      </div>
+                  </div>              
+                  
+                  <div style="font-size: 13px;">
+                    {{job.description}}
+                  </div>
+                  
+                  <div class="row" style="font-size: 14px;">
+                    <div class="col-md-4">
+                      Company : {{job.company_name}}
+                    </div>
+                    <div class="col-md-4">
+                      Job Type: {{job.type}}
+                    </div>
+                    <div class="col-md-4">
+                      Category: {{category_data[job.category] ? category_data[job.category].name : '-'}}
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div ng-if="jobs.length == 0">No Jobs found</div>
+          </div>
+          <div class="section-divider">
+          </div>
+          <div ng-include="'src/elements/pagination.html'" class="pagination_container"></div>
+</div>
+</div>

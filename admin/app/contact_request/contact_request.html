@@ -1,0 +1,219 @@
+<div class="jumbotron" data-pages="parallax">
+  <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
+    <div class="inner">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" ui-sref="dashboard">Home</a></li>
+        <li class="breadcrumb-item active">{{currentStateDetails.label}}</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid   container-fixed-lg bg-white">
+  <div class="card card-transparent">
+    <div class="card-header">
+      <div class="card-title">{{currentStateDetails.label}}
+      </div>
+      <div class="pull-right">
+        <div class="col-xs-12">
+          <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="export-options-container"></div>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped" id="tableWithExportOptions">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th> Contact</th>
+           
+            <th>Subject</th>
+            <th>Message</th>
+            <th class="ng-hide">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="gradeX" ng-repeat="t in totalItems" repeat-end="initTooltip()">
+            <td>{{$index + 1}}</td>
+            <td>
+                {{t.name}}
+              </td>            
+            <td>              
+              <p>Email: {{t.email}}</p>
+              <p>Phone:{{t.phone}}</p>              
+            </td>
+            <td>{{t.subject}}</td>
+            <td>{{t.message}}</td>
+            <td class="ng-hide">
+              <i ng-click="view(t);" class="fa fa-eye cp" data-toggle="tooltip" data-original-title="View Message" ></i> &nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+          <tr ng-if="totalItems.length == 0"><td colspan="7">No Message</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="viewAppModal" tabindex="-1" role="dialog" aria-labelledby="viewAppModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form role="form" name="newform" novalidate="" ng-class="{submitted: pageInfo.submitted}">
+      <div class="modal-header clearfix ">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+        </button>
+        <h4 class="p-b-5"><span class="semi-bold">{{form_data.id ? 'Edit' : 'New'}}</span> Company</h4>
+      </div>
+      <div class="modal-body">
+        <p class="small-text">Create a new company using this form, make sure you fill them all</p>
+          <div class="row">
+              <div class="profile_picture">
+                <img ng-if="form_data.profile.profile_picture" src="{{'api/uploads/'+form_data.profile.profile_picture}}">
+              </div>
+              <button trigger-upload="profile_picture" class="btn btn-primary">Upload Image</button>
+              <input file-upload type="file" id="profile_picture" name="profile_picture" ng-model="form_data.profile.profile_picture">
+              
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.name.$invalid}">
+                <label>User Name</label>
+                <input name="name" required="" ng-model="form_data.username" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="col-sm-6" ng-if="!form_data.id">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.password.$invalid}">
+                <label>Password</label>
+                <input name="password" required="" ng-model="form_data.password" type="password" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="col-sm-6" ng-if="form_data.id">
+              <p ng-if="!change_password"><input type="checkbox" ng-model="change_password">Change Password</p>
+              <div ng-if="change_password" class="form-group form-group-default" ng-class="{invalid: newform.password.$invalid}">
+                <label>Password</label>
+                <input name="password" required="" ng-model="form_data.password" type="password" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.company_name.$invalid}">
+                <label>Company name</label>
+                <input name="company_name" required="" ng-model="form_data.profile.company_name" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.founded_on.$invalid}">
+                <label>Founded Date</label>
+                <input cdate-picker name="founded_on" required="" ng-model="form_data.profile.founded_on" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.employer_name.$invalid}">
+                <label>Employer name</label>
+                <input name="employer_name" required="" ng-model="form_data.profile.employer_name" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.Address.$invalid}">
+                <label>Address</label>
+                <input name="address" required="" ng-model="form_data.profile.address" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.website.$invalid}">
+                <label>Website</label>
+                <input name="website" required="" ng-model="form_data.profile.website" type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.featured_job.$invalid}">
+                <label>Email</label>
+                <input name="email" required="" ng-model="form_data.email" type="email" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.contact1.$invalid}">
+                <label>Contact No 1</label>
+                <input name="contact1" required="" ng-model="form_data.profile.contact1" type="text" class="form-control" placeholder="Price of the package">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default">
+                <label>Contact No 2</label>
+                <input name="contact2" ng-model="form_data.profile.contact2" type="text" class="form-control" placeholder="Featured job">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.team.$invalid}">
+                <label>Team size</label>
+                <input name="team" ng-model="form_data.profile.team" type="text" class="form-control" placeholder="Price of the package">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.category.$invalid}">
+                <label>Categories</label>
+                <select multiple name="category" class="form-control select2multiple" multiple="multiple" ng-model="form_data.profile.category">
+                  <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: newform.package.$invalid}">
+                <label>Package</label>
+                <select  name="package" required class="form-control select2multiple" multiple="multiple" ng-model="form_data.profile.package">
+                  <option ng-repeat="cat in packages" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default">
+                <label>Location</label>
+                 <select  name="location" required class="form-control select2multiple" multiple="multiple" ng-model="form_data.profile.location">
+                  <option ng-repeat="cat in location" value="{{cat.id}}">{{cat.title}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group form-group-default" >
+                <label>Description</label>
+                <textarea rows="5"  name="description" ng-model="form_data.profile.description"  id="appDescription" type="text" class="form-control" placeholder="Tell us more about it"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group form-group-default" >
+                <label>Is Featured Company</label>
+                <input type="checkbox" name="is_featured" ng-model="form_data.is_featured">
+              </div>
+            </div>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button ng-click="save(newform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Add</button>
+        <button type="button" class="btn btn-cons" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

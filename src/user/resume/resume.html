@@ -1,0 +1,714 @@
+<div class=" job_main_right">
+  <div class="row job_section">
+  <div class="col-sm-12">
+    <div class="jm_headings">
+      <h2>Edit Resume</h2>
+    </div>
+
+  <div class="v_post row">
+    <div class="col-sm-8">
+      <h4>Resume</h4>
+      <div class="resume-file-download" ng-repeat="res in profile.resume_list">
+      <div class="res-view">
+        <h5>
+          <span class="res_name">{{$index+1}}). {{res.resume}} </span>
+          <span class="res-updated">(Uploaded on: {{res.updated_on | date: 'short'}})</span>
+        
+      </h5>
+      <div class="res_icon">
+        <a download="{{res.resume}}" href="admin/api/uploads/{{res.resume}}"><i class="fa fa-download"></i></a>
+          <i class="fas fa-trash" ng-click="delete('resume_list', $index);"></i>
+      </div>
+      
+      </div>            
+    </div>  
+    </div>
+
+    <div class="col-sm-4">
+      <div class="resume-file-uploaad">
+        <div class="resume row text-center">
+          
+            <input format="doc,docx,pdf" file-upload type="file" id="resume" ng-model="pageInfo.resume" after-upload="saveResume()" name="" class="form-control">
+          
+          <button trigger-upload="resume" class="btn btn-primary">Update Resume</button>
+          
+        </div>        
+      </div>        
+    </div>
+  </div>
+    <div class="section-divider"></div>
+    <div class="row">
+    <div class="col-sm-8">
+      <h4>Additional Documents</h4>
+      <div class="resume-file-download" ng-repeat="res in profile.Adddoc_list">
+        <div class="res-view ">
+          <h5>
+            <span class="res_name">{{$index+1}}). {{res.resume}} 
+            </span>
+            <span class="res-updated">(Uploaded on: {{res.updated_on | date: 'short'}})</span>
+        </h5>
+          <div class="text-right res_icon"><a download="{{res.adddoc}}" href="admin/api/uploads/{{res.adddoc}}"><i class="fa fa-download"></i></a>
+              <i class="fas fa-trash" ng-click="delete('Adddoc_list', $index);"></i></div>            
+        </div>   
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="resume-file-uploaad">
+        <div class="resume row text-center">
+          
+          <input format="doc,docx,pdf,jpg, jpeg, png" file-upload type="file" id="adddoc" ng-model="pageInfo.adddoc" after-upload="saveAdddoc()" name="" class="form-control">
+          <button trigger-upload="adddoc" class="btn btn-primary">Upload Documents</button>
+          
+        </div>        
+      </div>       
+    </div>        
+  </div>
+
+<div class="section-divider"></div>
+
+  <div class="v_post">
+    <div class="row">
+      <h4 class="col-sm-6">Resume Headline</h4>
+      <div class="col-sm-6 addex text-right">
+        <a href="#" ng-click="$event.preventDefault();show_modal('#headModal')">
+          <i class="fas fa-edit" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p>{{profile.headline}}</p>
+    </div>
+  </div>
+<div class="section-divider"></div>
+  <div class="v_post">
+  <div class="row">
+    <h4 class="col-sm-6">Summary</h4>
+    <div class="col-sm-6 addex text-right">
+      <a href="#" ng-click="$event.preventDefault();show_modal('#summaryModal')">
+        <i class="fas fa-edit" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <div>
+     <p>{{profile.summary}}</p>
+  </div>
+</div>
+<div class="section-divider"></div>
+<div class="v_post">
+  <div class="row">
+    <h4 class="col-sm-6">Key Skills</h4>
+    <div class="col-sm-6 addex text-right">
+      <a href="#" ng-click="$event.preventDefault();pageInfo.skills_form_data={};pageInfo.submitted=false;pageInfo.index=-1;show_modal('#skillModal')">
+        <i class="fas fa-edit" aria-hidden="true"></i>Add/Edit SKills
+      </a>
+    </div>
+  </div>
+  <div class="res_de">
+    <div ng-repeat="sk in profile.skills_info" class="row no-margin" style="margin-bottom: 10px !important;">
+      <div class="col-md-3">{{sk.skill}}<span ng-if="sk.primary == 'yes'">(Primary)</span></div>
+      <div class="col-md-3">{{sk.year}} years {{sk.month}} months</div>
+      <div class="col-md-4">
+        <div class="progress-bar">
+          <div style="width:{{sk.evaluation}}%;">{{sk.evaluation}}%</div>
+        </div>
+      </div>
+      <div class="col-md-2 text-right ">
+        <i ng-click="pageInfo.skills_form_data = copy(sk);pageInfo.submitted=false;pageInfo.index=$index;show_modal('#skillModal');" class="res_con fas fa-edit cp"></i> <i  class=" res_con cp fa fa-trash" ng-click="delete('skills_info', $index)"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+<div class="v_post">
+  <div class="row">
+    <h4 class="col-sm-6">Experience</h4>
+    <div class="col-sm-6 addex text-right">
+      <a href="#" ng-click="$event.preventDefault();pageInfo.submitted=false;show_modal('#experienceModal');pageInfo.exp_form_data={};pageInfo.index=-1;">
+        <i class="fa fa-plus"></i>Add Experience
+      </a>
+    </div>
+  </div>
+
+  <div class="res_de">
+    <div class="emp_list" ng-repeat="exp in profile.experience_info">
+      <h5 class="title">{{exp.designation}} <i ng-click="pageInfo.exp_form_data = copy(exp);pageInfo.submitted=false;pageInfo.index=$index;show_modal('#experienceModal');" class="res_con fas fa-edit cp"></i></h5>
+      <h6 class="res_subtitle">{{exp.organization}}</h6>
+      <p ng-if="exp.current_org == 'yes'">{{month[exp.start_month]}} {{exp.start_year}} to Present</p>
+      <p ng-if="exp.current_org == 'no'">{{month[exp.start_month]}} {{exp.start_year}} to {{month[exp.end_month]}} {{exp.end_year}}({{exp.dif}})</p>
+      <p ng-if="exp.description.length <= 250 || exp.show_full">{{exp.description}}</p>
+      <p ng-if="exp.description.length > 250 && !exp.show_full">{{exp.description.slice(0,250)}}...<span style="color: blue" class="cp tdu" ng-click="exp.show_full = true">Read More</span></p>
+    </div>
+  </div>
+  
+</div>
+<div class="section-divider"></div>
+<div class="v_post">
+  <div class="row">
+    <h4 class="col-sm-6">Education</h4>
+    <div class="col-sm-6 addex text-right">
+      <a href="#" ng-click="$event.preventDefault();pageInfo.submitted=false;show_modal('#educationModal');pageInfo.edu_form_data={};pageInfo.index=-1;">
+        <i class="fa fa-plus"></i>Add Education
+      </a>
+    </div>
+  </div>
+  <div class="res_de">
+    <div class="emp_list" ng-repeat="exp in profile.education">
+      <h5 class="title">{{exp.education}} {{exp.course}} {{exp.specialization}} <i ng-click="pageInfo.edu_form_data = copy(exp);pageInfo.submitted=false;pageInfo.index=$index;show_modal('#educationModal');" class="res_con fas fa-edit cp"></i></h5>
+      <h6>{{exp.institute}}</h6>
+      <p><b>Pass Out:</b> {{exp.year}}({{exp.type}}) <b>Grade:</b> {{exp.grade}}</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-divider"></div>
+<div class="v_post">
+  <div class="row">
+    <h4 class="col-sm-6">Working Preference</h4>
+    <div class="col-sm-6 addex text-right">
+      <a href="#" ng-click="$event.preventDefault();show_modal('#preferedModal')">
+        <i class="fas fa-edit" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <div class="row preference">
+    <div class="col-sm-6">
+      <p class="title">Location</p>
+      <p class="desc"><span ng-repeat="cat in profile.preferred_location">{{lov_obj.location[cat]}}</span></p>
+    </div>
+    <div class="col-sm-6">
+      <p class="title">Category</p>
+      <p class="desc"><span ng-repeat="cat in profile.preferred_category">{{lov_obj.category[cat]}}</span></p>
+    </div>
+    <div class="col-sm-6">
+      <p class="title">Job Level</p>
+      <p class="desc" ><span ng-repeat="cat in profile.preferred_joblevel">{{lov_obj.joblevel[cat]}}</span></p>
+    </div>
+    <div class="col-sm-6">
+      <p class="title">Salary</p>
+      <p class="desc">{{profile.preferred_salary}}</p>
+    </div>
+    <div class="col-sm-6">
+      <p class="title" >Benefits</p>
+      <p class="desc"><span ng-repeat="(f, b) in profile.benefits" ng-show="b">{{f}}, </span></p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="educationModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Education</h5>
+          <i style="color: red;" class="del_con text-right cp fa fa-trash" ng-click="delete('education', pageInfo.index)" data-dismiss="modal"></i>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="eduform" ng-class="{submitted: pageInfo.submitted}">
+            <div class="form-group form-group-default">
+              <label>Education</label>
+             <select class=" form-control" ng-model="pageInfo.edu_form_data.education">
+                <option value="">Select Select</option>
+                <option>Masters</option>
+                <option>Bachelors</option>
+                <option>College</option>
+              </select>               
+            </div>
+            <div class="form-group form-group-default">
+              <label>Course</label>
+              <input name="course" required="" ng-model="pageInfo.edu_form_data.course" type="text" class="form-control" placeholder="Enter Your Course">              
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Specialization</label>
+              <input name="specialization" required="" ng-model="pageInfo.edu_form_data.specialization" type="text" class="form-control" placeholder="Enter Your Specialization">              
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>University/Institute</label>
+              <input name="institute" required="" ng-model="pageInfo.edu_form_data.institute" type="text" class="form-control" placeholder="Enter Your Institute">              
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Course Type</label>
+              <div>
+                <label class="radio-inline"><input ng-model="pageInfo.edu_form_data.type" name="coursetype"  value="Fulltime" type="radio" class=""> Fulltime</label>
+                <label class="radio-inline"><input ng-model="pageInfo.edu_form_data.type" name="coursetype" value="Partime"  type="radio" class=""> Partime </label>
+                <label class="radio-inline"><input ng-model="pageInfo.edu_form_data.type" name="coursetype" value="Distance"  type="radio" class=""> Distance </label>
+              </div>                        
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Passing out Year</label>
+              
+              <select class="col-sm-4 form-control selyr" ng-model="pageInfo.edu_form_data.year">
+                <option value="">Select Year</option>
+                <option ng-repeat="y in year" value="{{y}}">{{y}}</option>
+              </select> 
+             
+              
+                      
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Percentage / Grade</label>
+              <input type="text" class="form-control" name="grade" ng-model="pageInfo.edu_form_data.grade">       
+              </div>            
+            
+            <div>
+              <button class="btn btn-primary  btn-cons" type="submit" ng-click="add_education(eduform)">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="experienceModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Experience </h5> <i style="color: red;" class="del_con cp fa fa-trash text-right" ng-click="delete('experience_info', pageInfo.index)" data-dismiss="modal"></i>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="expform" ng-class="{submitted: pageInfo.submitted}">
+            <div class="form-group form-group-default">
+              <label>Designation</label>
+              <input name="designation" required="" ng-model="pageInfo.exp_form_data.designation" type="text" class="form-control" placeholder="Enter Your Designation">              
+            </div>
+            <div class="form-group form-group-default">
+              <label>Organization</label>
+              <input name="orgination" required="" ng-model="pageInfo.exp_form_data.organization" type="text" class="form-control" placeholder="Enter Your Organization">              
+            </div>
+
+            <div class="form-group form-group-default" >
+              <label>Is this your current Organization</label>
+              <div>
+                <label class="radio-inline"><input required="" ng-model="pageInfo.exp_form_data.current_org" name="currntorg"  value="yes" type="radio" > Yes</label>
+                <label class="radio-inline"><input required="" ng-model="pageInfo.exp_form_data.current_org" name="currntorg" value="no"  type="radio" > No </label>
+              </div>                        
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Started Working From</label>
+              <div class="row no-margin">
+                <select class="col-sm-4 form-control selyr" required="" ng-model="pageInfo.exp_form_data.start_year">
+                <option value="">Select Year</option>
+                <option ng-repeat="y in year" value="{{y}}">{{y}}</option>
+              </select> 
+
+              <select class="col-sm-4 form-control selyr" required="" ng-model="pageInfo.exp_form_data.start_month">
+                <option value="">Select Month</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">May</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
+                <option value="10">Oct</option>
+                <option value="11">Nov</option>
+                <option value="12">Dec</option>
+              </select>         
+              </div> 
+            </div>
+
+            <div class="form-group form-group-default" >
+              <label>Worked Till</label>
+              <p ng-if="pageInfo.exp_form_data.current_org == 'yes'"><b>Present</b></p>
+              <div class="row no-margin" ng-if="pageInfo.exp_form_data.current_org == 'no'">
+                <select class="col-sm-4 form-control selyr" required ng-model="pageInfo.exp_form_data.end_year">
+                  <option value="">Select Year</option>
+                  <option ng-repeat="y in year" value="{{y}}">{{y}}</option>
+                </select> 
+
+                <select class="col-sm-4 form-control selyr" required ng-model="pageInfo.exp_form_data.end_month">
+                  <option value="">Select Month</option>
+                  <option value="1">Jan</option>
+                  <option value="2">Feb</option>
+                  <option value="3">Mar</option>
+                  <option value="4">Apr</option>
+                  <option value="5">May</option>
+                  <option value="6">Jun</option>
+                  <option value="7">Jul</option>
+                  <option value="8">Aug</option>
+                  <option value="9">Sep</option>
+                  <option value="10">Oct</option>
+                  <option value="11">Nov</option>
+                  <option value="12">Dec</option>
+                </select>         
+              </div> 
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Describe your job profile</label>
+              <textarea rows="5" name="description" required="" ng-model="pageInfo.exp_form_data.description" type="text" class="form-control" placeholder="Enter Your Current Designation"></textarea>             
+            </div>
+
+            <div class="form-group form-group-default" ng-if="pageInfo.exp_form_data.current_org == 'yes'">
+              <label>Notice Period</label>
+              <select class="form-control" ng-model="pageInfo.exp_form_data.noticeperiod">
+                <option value="">Select Notice Period</option>
+                <option value="15">15 Days</option>
+                <option value="30">30 Days</option>
+                <option value="45">45 Days</option>
+                <option value="60">60 Days</option>
+              </select>                
+            </div>
+
+            <div>
+              <button class="btn btn-primary  btn-cons" type="submit" ng-click="add_experience(expform.$valid)">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="headModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Resume Headline</h5>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="headform" ng-class="{submitted: pageInfo.submitted}">
+            <div class="form-group form-group-default">
+              <input name="headline" required="" ng-model="profile.headline" type="text" class="form-control" placeholder="Enter Your Resume Headline">              
+            </div>
+            <div>
+              <button class="btn btn-primary  btn-cons" data-dismiss="modal" ng-click="save()">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="summaryModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Summary</h5>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="sumform" ng-class="{submitted: pageInfo.submitted}">
+            <div class="form-group form-group-default" ng-class="{invalid: sumform.summary.$invalid}">
+              <textarea name="summary" required="" ng-model="profile.summary" type="text" class="form-control" placeholder="Enter Your Professional Summary"></textarea>             
+            </div>
+            <div>
+              <button class="btn btn-primary  btn-cons" data-dismiss="modal" ng-click="save()">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="skillModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Key Skills</h5>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="skillform" ng-class="{submitted: pageInfo.submitted}">
+            
+            <div class="form-group form-group-default">
+              <label>Skill</label>
+              <select class="form-control selyr" required="" ng-model="pageInfo.skills_form_data.skill">
+                <option value="">Select Skill</option>
+                <option ng-repeat="l in lov.skills" value="{{l.title}}">{{l.title}}</option>
+              </select>             
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Self Evaluation(%)</label>
+              <input class="form-control" name="evaluation" required="" ng-model="pageInfo.skills_form_data.evaluation" type="text" >           
+            </div>
+
+            <div class="form-group form-group-default" >
+              <label>Is this your primary</label>
+              <div>
+                <label class="radio-inline"><input required="" ng-model="pageInfo.skills_form_data.primary" name="currntorg"  value="yes" type="radio" > Yes</label>
+                <label class="radio-inline"><input required="" ng-model="pageInfo.skills_form_data.primary" name="currntorg" value="no"  type="radio" > No </label>
+              </div>                        
+            </div>
+
+            <div class="form-group form-group-default">
+              <label>Experience</label>
+              <div class="row no-margin">
+                <select class="col-sm-4 form-control selyr" required="" ng-model="pageInfo.skills_form_data.year">
+                <option value="">Select Year</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select> 
+
+              <select class="col-sm-4 form-control selyr" required="" ng-model="pageInfo.skills_form_data.month">
+                <option value="">Select Month</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>         
+              </div> 
+            </div>
+
+
+            <div>
+              <button class="btn btn-primary  btn-cons" type="submit" ng-click="add_skills(skillform)">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="preferedModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header log-hd">
+          <h5 class="modal-title">Add Your Preferences</h5>
+        </div>
+        <div class="modal-body bg-gra usrmodal">
+          <form role="form" name="pref_form" ng-class="{submitted: pageInfo.submitted}">
+            <div class="form-group form-group-default" ng-class="{invalid: expform.designation.$invalid}">
+              <label>Prefered Working Location</label>
+              <select name="skills" class="form-control "  select2 ng-model="profile.preferred_location" multiple >
+                <option value="0">Select Location</option>
+                <option ng-repeat="loc in location" value="{{loc.id}}">{{loc.title}}</option>
+              </select>           
+            </div>
+            <div class="form-group form-group-default" ng-class="{invalid: expform.category.$invalid}">
+              <label>Expected Job Category</label>
+               <select name="skills" class="form-control " select2 ng-model="profile.preferred_category" multiple >
+                <option value="0">Select Category</option>
+                <option ng-repeat="cat in category" value="{{cat.id}}">{{cat.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group form-group-default" ng-class="{invalid: expform.joblevel.$invalid}">
+              <label>Expected Job Level</label>
+               <select name="skills" class="form-control " select2  ng-model="profile.preferred_joblevel" multiple >
+                <option value="0">Select Job Level</option>
+                <option ng-repeat="jl in lov.joblevel" value="{{jl.id}}">{{jl.title}}</option>
+              </select>                       
+            </div>
+
+            <div class="form-group form-group-default" ng-class="{invalid: expform.expsalary.$invalid}">
+              <label>Expected Salary</label>
+              <input name="designation" required="" ng-model="profile.preferred_salary" type="text" class="form-control" placeholder="Expected Salary">              
+            </div>
+
+<div class="form-group expected-company-benefit">
+  <label>
+      <strong class="text-red edit-field" style="display: inline;">*</strong>
+      My Top 5 Desired Benefits
+  </label>
+  <div class="icon-group expected-company-benefit-list push-top-sm view-mode" id="benefit-view-mode">
+      <div class="row">
+          <div class="col-sm-4">
+              <div>
+                  <label>
+                      
+                      <span title="Awards" ng-click="profile.benefits['Awards'] = !profile.benefits['Awards']">
+                          <a class="benefit-icon"><i class="fa fa-fw fa-trophy"></i></a>
+                          <span class="benefit-name">Awards</span>
+                          <span ng-if="profile.benefits['Awards']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                      </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                      <span title="Bonus" ng-click="profile.benefits['Bonus'] = !profile.benefits['Bonus']">
+                          <a class="benefit-icon"><i class="fa fa-fw fa-dollar"></i></a>
+                          <span class="benefit-name">Bonus</span>
+                          <span ng-if="profile.benefits['Bonus']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                      </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Canteen" ng-click="profile.benefits['Canteen'] = !profile.benefits['Canteen']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-coffee"></i></a>
+                      <span class="benefit-name">Canteen</span>
+                      <span ng-if="profile.benefits['Canteen']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Healthcare Plan" ng-click="profile.benefits['Healthcare Plan'] = !profile.benefits['Healthcare Plan']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-user-md"></i></a>
+                      <span class="benefit-name">Healthcare Plan</span>
+                      <span ng-if="profile.benefits['Healthcare Plan']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Kindergarten" ng-click="profile.benefits['Kindergarten'] = !profile.benefits['Kindergarten']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-child"></i></a>
+                      <span class="benefit-name">Kindergarten</span>
+                      <span ng-if="profile.benefits['Kindergarten']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div>
+                  <label>
+                      
+                  <span title="Laptop" ng-click="profile.benefits['Laptop'] = !profile.benefits['Laptop']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-laptop"></i></a>
+                      <span class="benefit-name">Laptop</span>
+                      <span ng-if="profile.benefits['Laptop']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Library" ng-click="profile.benefits['Library'] = !profile.benefits['Library']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-book"></i></a>
+                      <span class="benefit-name">Library</span>
+                      <span ng-if="profile.benefits['Library']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Mobile" ng-click="profile.benefits['Mobile'] = !profile.benefits['Mobile']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-mobile"></i></a>
+                      <span class="benefit-name">Mobile</span>
+                      <span ng-if="profile.benefits['Mobile']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Paid Leave" ng-click="profile.benefits['Paid Leave'] = !profile.benefits['Paid Leave']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-file-image-o"></i></a>
+                      <span class="benefit-name">Paid Leave</span>
+                      <span ng-if="profile.benefits['Paid Leave']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Team Activities" ng-click="profile.benefits['Team Activities'] = !profile.benefits['Team Activities']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-glass"></i></a>
+                      <span class="benefit-name">Team Activities</span>
+                      <span ng-if="profile.benefits['Team Activities']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+          </div>
+          <div class="col-sm-4">
+              <div>
+                  <label>
+                      
+                  <span title="Training" ng-click="profile.benefits['Training'] = !profile.benefits['Training']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-graduation-cap"></i></a>
+                      <span class="benefit-name">Training</span>
+                      <span ng-if="profile.benefits['Training']"  class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Transportation" ng-click="profile.benefits['Transportation'] = !profile.benefits['Transportation']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-cab"></i></a>
+                      <span class="benefit-name">Transportation</span>
+                      <span ng-if="profile.benefits['Transportation']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Travel Opportunities" ng-click="profile.benefits['Travel Opportunities'] = !profile.benefits['Travel Opportunities']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-plane"></i></a>
+                      <span class="benefit-name">Travel Opportunities</span>
+                      <span ng-if="profile.benefits['Travel Opportunities']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+              <div>
+                  <label>
+                      
+                  <span title="Vouchers" ng-click="profile.benefits['Vouchers'] = !profile.benefits['Vouchers']">
+                      <a class="benefit-icon"><i class="fa fa-fw fa-gift"></i></a>
+                      <span class="benefit-name">Vouchers</span>
+                      <span ng-if="profile.benefits['Vouchers']" class="ic-check"><i class="fa fa-fw fa-check"></i></span>
+                  </span>
+                  </label>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-12">
+              
+              <p class="text-danger min-number-of-benefits" hidden="hidden" style="overflow: hidden; display: none; height: 1px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;"><em>Please select at least one benefit.</em></p>
+          </div>
+  </div>
+  <!--/ Benefit Edit Mode-->
+</div>
+</div>
+<!-- Buttons-->
+
+            <div>
+              <button class="btn btn-primary  btn-cons" data-dismiss="modal" ng-click="save()">Save</button>
+            </div>
+          </form>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

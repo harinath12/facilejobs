@@ -1,0 +1,71 @@
+<header class="header_01 header_inner">
+  <div class="header_main">
+   <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+    </div>
+    <div class="header_btm">
+      <h2>Job Content</h2>
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="job_container">
+    <div class="container" style="max-width: 100%;">
+      <div class="row job_main">
+        <div class="col-sm-12" style="overflow: auto;">
+          <div class="row job_detail">
+            <div class="col-sm-8">
+              <ul class="container_cont">
+               <li style="position: relative;top:-10px;"> Jobs:<div class="dropdown">
+                  <select select2 ng-model="pageInfo.selectedJob" ng-change="getData()">
+                    <option ng-repeat="job in jobs" value="{{job.id}}">{{job.title}}</option>
+                  </select>
+                 </div></li>
+               <li> No of Applicants: {{pageInfo.screening_data.count}}</li>
+               <li><i class="fas fa-clock"></i> {{pageInfo.screening_data.job.posted_on}}</li>
+               <li> No of Position: {{pageInfo.screening_data.job.no_of_position}}</li>
+              </ul>
+        </div>
+        <div class="col-sm-4 srh-filter text-right" >
+          <span class="srh"><input ng-model="search.$" type="text" class="form-control" placeholder="Search" width="50%">
+                  <i class="fa fa-search" aria-hidden="true"></i></span>
+             <span class="ng-hide "><i class="fas fa-filter"></i> </span>             
+        </div>
+      </div>
+
+      <div ng-if="pageInfo.screening_data.count == 0">
+        Yet, No Applicants
+      </div>
+
+      <div ng-if="pageInfo.screening_data.count != 0" style="width:1800px;" class="ui-widget can-tab row ui-helper-clearfix">
+ 
+        <div ng-repeat="(status, user) in pageInfo.screening_data.status" class="job-status-container col-sm-2">
+          <div class="header-panel"><a class="nav-link">{{status}} <span>{{user.length}}</span></a></div>
+          <div class="draggable-panel" droppable data-status="{{status}}" ng-drop="onDrop(event, ui, status)">
+            <div class="user-short-info row" draggable data-id="{{us.id}}" ng-repeat="us in user | filter:search">
+              <div class="col-md-2">
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="col-md-10">
+                <h4 ui-sref="view_candidate({id: us.id})">{{us.first_name}} {{us.last_name}}</h4>
+                <span class="user-destination">{{us.job_title}}</span>
+                <span class="user-experience">{{us.experience}} Years Exp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+       
+          
+        </div>       
+      </div>
+    </div>
+  </div>
+</main>

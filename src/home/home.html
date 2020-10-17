@@ -1,0 +1,511 @@
+<header class="header_04">
+  <div class="header_main">
+     <div class="header_menu fixed-top"  ng-include="'src/elements/header.html'">
+    </div>
+    <div class="header_btm" >
+       <video autoplay loop>
+        <source src="new_html/assets/images/video.mp4" type="video/mp4">
+      </video> 
+
+      <!-- <div class="bg-v" >
+        <div class="bg-v-2 bg-b-r">
+        </div>
+      </div> -->
+      <div class="container">
+        <div class="banner_slider ">
+          <div class="">  
+            <div class="row align-items-center">
+              <div class="col-md-12 text-center" data-aos="fade-down" data-aos-delay="200">
+                <h2>Find the  most exciting<br> starup jobs</h2>
+                <p></p>
+                <a class="btn btn-third" ui-sref="job_search">Know more
+                  <i class="material-icons">arrow_right_alt</i>
+                </a>
+              </div>
+              <div class="col-md-12" data-aos="fade-down" data-aos-delay="200">
+                <div class="banner_form_cont" >
+                  <form>
+                    <div class="banerSearch" data-aos="fade-up" data-aos-delay="200">
+                      <div class="fild-wrap fw-job-title">
+                        <i class="fas fa-briefcase"></i>
+                        <select ng-model="pageInfo.search.title" select2  name="state">
+                          <option value=""> JOB TITLE, SKILL, INDUSTRY</option>
+                          <option ng-repeat="key in home_data.data | orderBy: 'title'" value="{{key.title}}">{{key.title}}</option>
+                        </select>
+                      </div>
+                      <div class="fild-wrap fw-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select ng-model="pageInfo.search.location" select2 name="state">
+                          <option value="">Location</option>
+                          <option ng-repeat="key in lov.location" value="{{key.title}}">{{key.title}}</option>
+                        </select>
+                      </div>
+                      <div class="fild-wrap fw-submit">
+                        <button class="btn btn-primary" ng-click="search_job()" value="">
+                           <i class="material-icons">search</i> SEARCH JOBS
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="user_type">
+                    <div class="row">
+                      <div class="col-md-6" >
+                        <div class="user_type_inner  user_type_seeker" data-aos="fade-up" data-aos-delay="200">
+                          <a ui-sref="job_search">
+                            <div class="usertype_img">
+                              <img alt=""   src="new_html/assets/images/usertype-2.png">
+                              <img alt=""   class="usertype-addon" src="new_html/assets/images/usertype-2-addon.png">
+                            </div>
+                            <div>
+                              <h3>I'm looking for a job</h3>
+                              <p>Post CV and apply job you love</p>
+                              <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="user_type_inner user_type_post" data-aos="fade-up" data-aos-delay="400">
+                          <a ui-sref="company.jobpost">
+                            <div class="usertype_img">
+                              <img alt=""  src="new_html/assets/images/usertype-1.png">
+                              <img alt=""  class="usertype-addon" src="new_html/assets/images/usertype-1-addon.png">
+                            </div>
+                            <div>
+                              <h3>I want to post job</h3>
+                              <p>Post jobs & hire porfessionls</p>
+                              <i class="fas fa-long-arrow-alt-right"></i>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+          
+      </div>  
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="section category-section ">
+    <div class="bg-v">
+      <div class="bg-v-1 bg-t-l" data-aos="zoom-in">
+      </div>
+      <div class="bg-v-2 bg-b-r" data-aos="zoom-in">
+      </div>
+      <!-- <div class="bg-v-4">
+      </div>
+      <div class="bg-v-5">
+      </div>
+      <div class="bg-v-6">
+      </div>
+      <div class="bg-v-7">
+      </div>
+      <div class="bg-v-8">
+      </div>
+      <div class="bg-v-9">
+      </div>
+      <div class="bg-v-10">
+      </div>
+      <div class="bg-v-11">
+      </div> -->
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Popular Job Categories</h2>
+      <div class="row">
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-code.png">
+              <span class="job_count">363</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Web & Software Dev</h3>
+              <p>Software Engineer, Web / Mobile Developer &amp; More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-server.png">
+              <span class="job_count">572</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Data Science & Analitycs</h3>
+              <p>Data Specialist / Scientist, Data Analyst & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-calculator.png">
+              <span class="job_count">252</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Accounting & Consulting</h3>
+              <p>Auditor, Accountant, Fnancial Analyst & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-pan.png">
+              <span class="job_count">523</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Writing & Translations</h3>
+              <p>Copywriter, Creative Writer, Translator & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-chart.png">
+              <span class="job_count">98</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Sales & Marketing</h3>
+              <p>Brand Manager, Marketing Coordinator & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-graphic.png">
+              <span class="job_count">53</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Graphics & Design</h3>
+              <p>Creative Director, Web Designer & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" >
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-digital.png">
+              <span class="job_count">75</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Digital Marketing</h3>
+              <p>Darketing Analyst, Social Profile Admin & More</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="category_box" >
+            <div class="cb_header">
+              <img alt=""  src="new_html/assets/images/i-education.png">
+              <span class="job_count">366</span>
+            </div>
+            <div class="cb_bottom">
+              <h3>Education & Training</h3>
+              <p>Advisor, Coach, Education Coordinator & More</p>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+
+  <div class="section dark-section featured_section">
+    <div class="bg-v">
+      <div class="bg-v-3 bg-t-r">
+      </div>
+      <div class="bg-v-3 bg-b-l">
+      </div>
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Featured Jobs</h2>
+      <div class="row two_col featured_box_outer" >
+        <div class="col-sm-6" ng-repeat="fj in home_data.featured_jobs" >
+          <div class="featured_box ">
+            <div class="fb_image" >
+              <a ui-sref="view_job({id: fj.id})">
+                <img width="150px;"  alt="brand logo" ng-src="{{fj.company_image ? 'admin/api/uploads/'+fj.company_image : 'html/images/company_placeholder.jpeg'}}">
+              </a>
+            </div>
+            <div class='fb_content' >
+              <h4>
+                <a ui-sref="view_job({id: fj.id})">{{fj.title}}</a>
+              </h4>
+              <ul>
+                
+                <li>
+                  <a href="#">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{lov.location[fj.location[0]].title}}
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="far fa-clock"></i>
+                   {{fj.posted_on | timeago}}
+                  </a>
+                </li>
+              </ul>
+                <div style="font-size: 13px;">
+                    {{fj.description | shortContent:200}}
+                </div>
+            </div>
+            <div class="fb_action" >
+              <a ng-click="$event.preventDefault();shortlist_job();"  class="addtofav" title="add to favourite" href="#"><i class="{{fj.shortlisted ? 'fas' : 'far'}} fa-heart"></i></a>
+              <a class="btn btn-third" ui-sref="view_job({id: fj.id})">Apply Now</a>
+              <ul class="tags" ng-repeat="tags in fj.keywords">
+                <li>{{lov.keywords[tags].title}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-right" > 
+          <a data-aos="fade-down" data-aos-delay="400" class="btn btn-primary" ui-sref="job_search">Browse All Jobs <i class="fas fa-long-arrow-alt-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section  paln_section">
+    <div class="bg-v">
+      <div class="bg-v-1 bg-t-l">
+      </div>
+      <div class="bg-v-2 bg-b-l">
+      </div>
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Membership Plans</h2>
+      <div class="planduration" data-aos="fade-in" data-aos-delay="400">
+        <div class="custom-control custom-switch text-center">
+          <label class="before-custom-control-label" for="customSwitch1"> <span>Billed Monthly</span></label>
+          <input type="checkbox" class="custom-control-input" id="customSwitch1">
+          <label class="custom-control-label" for="customSwitch1"> <span>Billed Yearly</span> </label>
+         <div class="small-alert alert-success"> Save 21%  </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4" data-aos="fade-left" data-aos-delay="600">
+          <div class="plan_box">
+            <h3>Basic Plan</h3>
+            <p>One time fee for one listing or task highlighted in search results.</p>
+            <div class="plan_price pl-monthly">
+              <h4><strong>$19</strong>/ monthly</h4>
+            </div>
+            <div class="plan_price pl-yearly hide">
+              <h4><strong>$200</strong>/ yearly</h4>
+            </div>
+            <h5>Features of Basic Plan</h5>
+            <ul>
+              <li><i class="fas fa-check"></i> 1 Listing</li>
+              <li><i class="fas fa-check"></i> 30 Days Visibility</li>
+              <li><i class="fas fa-check"></i> Highlighted in Search Results</li>
+              <li><i class="fas fa-check"></i>Fraud protection</li>
+                    <li><i class="fas fa-check"></i>Featured Listing</li>
+            </ul>
+            <a class="btn btn-third" ui-sref="company.payment">Buy Now</a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="plan_box plan_box_hoverd">
+            <div class="populer_plan">
+              Most Populer
+            </div>
+            <h3>Standard Plan</h3>
+            <p>One time fee for one listing or task highlighted in search results.</p>
+            <div class="plan_price">
+              <h4><strong>$36</strong>/ monthly</h4>
+            </div>
+            <div class="plan_price pl-yearly hide">
+              <h4><strong>$396</strong>/ yearly</h4>
+            </div>
+            <h5>Features of Standard Plan</h5>
+            <ul>
+              <li><i class="fas fa-check"></i> 6 Listing</li>
+              <li><i class="fas fa-check"></i> 65 Days Visibility</li>
+              <li><i class="fas fa-check"></i> Highlighted in Search Results</li>
+              <li><i class="fas fa-check"></i>Fraud protection</li>
+                    <li><i class="fas fa-check"></i>Featured Listing</li>
+            </ul>
+            <a class="btn btn-third" ui-sref="company.payment">Buy Now</a>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-right" data-aos-delay="600">
+          <div class="plan_box">
+
+            <h3>Extended Plan</h3>
+            <p>One time fee for one listing or task highlighted in search results.</p>
+            <div class="plan_price">
+              <h4><strong>$79</strong>/ monthly</h4>
+            </div>
+            <div class="plan_price pl-yearly hide">
+              <h4><strong>$850</strong>/ yearly</h4>
+            </div>
+            <h5>Features of Extended Plan</h5>
+            <ul>
+              <li><i class="fas fa-check"></i> Unlimited Listings Listing</li>
+              <li><i class="fas fa-check"></i> 100 Days Visibility</li>
+              <li><i class="fas fa-check"></i> Highlighted in Search Results</li>
+              <li><i class="fas fa-check"></i>Fraud protection</li>
+                    <li><i class="fas fa-check"></i>Featured Listing</li>
+            </ul>
+            <a class="btn btn-third" ui-sref="company.payment">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section post_section">
+    <div class="bg-v">
+      <div class="bg-v-2 bg-t-l">
+      </div>
+      <div class="bg-v-2 bg-b-r">
+      </div>
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Recent Blog Posts</h2>
+      <div class="row">
+        <div class="col-md-4" data-aos="fade-left" data-aos-delay="600">
+          <div class="post_box">
+            <img  alt="" src="new_html/assets/images/blog1.jpeg" class="img-responsive">
+            <div class="post_content">
+              <h6>
+                <a href="#">Social Media Turns You To Socialize Your Business</a>
+              </h6>
+              <p>We know that you possess a long list of questions to ask us. To sort out all your queries and doubts, we have emerged with the most interesting facts… </p>
+              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="post_box">
+            <img  alt="" src="new_html/assets/images/blog2.jpeg" class="img-responsive">
+            <div class="post_content">
+              <h6>
+                <a href="#">Create More Space For Seo & Garner Myriad Of Customers</a>
+              </h6>
+              <p>SEO stands for Search Engine Optimization. SEO is the process of driving more users to your website by creating true and accurate content. It is the major process of obtaining more traffic from organic and free search engines… </p>
+              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-right" data-aos-delay="600">
+          <div class="post_box">
+            <img  alt="" src="new_html/assets/images/blog3.jpeg" class="img-responsive">
+            <div class="post_content">  
+              <h6>
+                <a href="#">Can Anyone Start Digital Marketing?</a>
+              </h6>
+              <p>Yes, anybody can start their own digital marketing business. Unlike other industries, anyone can do it without any formal qualification to run your own business… </p>
+              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+  <div class="section status_section">
+    <div class="bg-v">
+      <div class="bg-v-1 bg-t-r">
+      </div>
+      <div class="bg-v-2 bg-b-l">
+      </div>
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">HowMatch Status</h2>
+      
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <div class="status_box" data-aos="fade-in" data-aos-delay="600">
+            <img alt=""  data-aos="fade-up" data-aos-delay="1000" src="new_html/assets/images/i-paper-plane.png">
+
+            <h3>83</h3>
+            <p>Job Posted.</p>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="status_box" data-aos="fade-in" data-aos-delay="800">
+            <img alt=""  data-aos="fade-up" data-aos-delay="1200" src="new_html/assets/images/i-doctor.png">
+            
+            <h3>16</h3>
+            <p>Job Filled.</p>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="status_box" data-aos="fade-in" data-aos-delay="1000">
+            <img alt=""  data-aos="fade-up" data-aos-delay="1400" src="new_html/assets/images/i-company.png">
+            <h3>36</h3>
+            <p>Companies</p>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="status_box" data-aos="fade-in" data-aos-delay="1200">
+            <img alt=""  data-aos="fade-up" data-aos-delay="1600" src="new_html/assets/images/i-mamber.png">
+            <h3>175</h3>
+            <p>Members</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section gray  partner_section">
+    <div class="bg-v">
+      <div class="bg-v-1 bg-t-l">
+      </div>
+      <div class="bg-v-3 bg-b-r">
+      </div>
+    </div>
+    <div class="container">
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Our Partners</h2>
+      <ul class="partner_carousel owl-carousel owl-theme">
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/anandsgroup.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img  alt="brand logo" src="new_html/assets/images/lafs.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/atv.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/dragonfly.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/kalasalingam.jpg"></a>
+        </li> 
+        <!--<li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/glogoimg1.png"></a>
+        </li>-->
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/flyingstart.png"></a>
+        </li>
+        
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/LOGOAIHT.png"></a>
+        </li>
+        <li>
+          <a href="#"><img   alt="brand logo" src="new_html/assets/images/mip.png"></a>
+        </li> 
+      </ul>
+    </div>
+  </div>
+</main>

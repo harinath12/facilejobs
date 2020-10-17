@@ -1,0 +1,175 @@
+     <div class="container">
+        <div class="header_top">
+          <div class="logo">
+            <a ui-sref="home">
+              <div class="howmatchlogo">
+                <img  alt="facilejobs" class="img-fluid" src="new_html/assets/images/logo.png"></div>
+            </a>
+          </div>
+          <div class="navigation">
+            <nav>
+              <div class="hamburger hamburger--spring js-hamburger ">
+                    <div class="hamburger-box">
+                      <div class="hamburger-inner"></div>
+                    </div> 
+                  </div>
+              <ul>
+                <li class=" current_page">
+                  <a ui-sref="home">Home</a>
+                </li>
+                <li class="">
+                  <a ui-sref="job_search">Search Job</a>                  
+                </li>
+                <li class="" ng-show="!loggedInUserInfo.id || (loggedInUserInfo.id && loggedInUserInfo.user_type == 2)" class="ac_nav after_login_ac_nav">
+                  <a ui-sref="company.jobpost">Post Job</a>
+                 </li>
+
+                <!-- <li class="">
+                  <a ui-sref="companies">Companies</a>
+                </li> -->
+                
+                <li class="">
+                  <a ui-sref="pages({id: 'contact-us'})">Contact Us</a>
+                </li>
+              </ul>
+            </nav>
+            <div ng-show="!loggedInUserInfo.id" class="ac_nav">
+              <!--Not logedin-->
+                <div class="login_pop">
+                  <button class="btn btn-primary">Login / Sign up <i class="fas fa-caret-down"></i></button>
+                  <div class="login_pop_box">
+                    <span class="twobtn_cont">
+                      <a class="signjs_btn" ui-sref="signup({id: 3})">         
+                      <span>Job seekers</span> Sign up
+                      <i class="far fa-user"></i>
+                      </a>
+                    <a class="signrs_btn" ui-sref="signup({id: 2})" >  <span>EMPLOYERS</span> Sign up
+                      <i class="fas fa-landmark"></i>
+                    </a>
+                    </span>
+                    <div>
+                      <span class="member_btn">Already a member?</span>
+                      <a class="lgin_btn btn btn-primary" ui-sref="login"> 
+                          Login
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              <!--end logedin-->
+            </div>
+
+            <div ng-show="loggedInUserInfo.id && loggedInUserInfo.user_type == 3" class="ac_nav after_login_ac_nav">
+              <!--logedin-->
+                <div class="login_pop after_login"  ng-class="{hv_img: loggedInUserInfo.profile.profile_image}">
+                  <button class="btn btn-primary withdp">  <i ng-if="!loggedInUserInfo.profile.profile_image" class="fa fa-user" aria-hidden="true"></i><img alt=""  ng-if="loggedInUserInfo.profile.profile_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.profile_image}}"> Hi {{loggedInUserInfo.profile ? loggedInUserInfo.profile.name : loggedInUserInfo.username}}  <i class="fas fa-caret-down"></i></button>
+                  <div class="login_pop_box login_pop_box_menu">
+                    <div class="login_pop_box_head">
+                      <div  ng-class="{hv_img: loggedInUserInfo.profile.profile_image}">
+                        <i ng-if="!loggedInUserInfo.profile.profile_image" class="fa fa-user" aria-hidden="true"></i>
+                        <img alt=""  ng-if="loggedInUserInfo.profile.profile_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.profile_image}}">
+                        <h5>{{loggedInUserInfo.profile ? loggedInUserInfo.profile.name : loggedInUserInfo.username}}</h5> 
+                        <h6>{{loggedInUserInfo.profile.job_title}}</h6>
+                      </div>
+                    </div>
+                    <ul>
+                      <li>
+                        <a ui-sref="user.dashboard"><i class="fas fa-search"></i> Dashboard </a>
+                      </li>
+                      <li>
+                        <a ui-sref="user.applied_job"><i class="fas fa-search"></i> Applied Jobs </a>
+                      </li>
+                      <li>
+                        <a ui-sref="user.shortlist_job"><i class="fas fa-star"></i> View My Stared Jobs</a>
+                      </li>
+                      <li>
+                        <a ui-sref="user.profile"><i class="fas fa-user"></i> Update My Profile</a>
+                      </li>
+                      <li>
+                        <a ui-sref="user.settings"><i class="fas fa-key"></i>Change Password</a>
+                      </li>
+                      <li>
+                        <a href="#" ng-click="logout()"><i class="fas fa-power-off"></i> Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="login_pop after_login">
+                  <button class="btn btn-msg">
+                    <i class="fas fa-bell"></i>
+                    <span class="msg-count">2</span>
+                   </button>
+                  <div class="login_pop_box job_seekernotifi ">
+                      <h6>Notification</h6>
+                     <!--  <ul>
+                        <li><img alt=""   src="assets/images/c-logo-02.webp"><a href="#"> Thanks for applying this job, our HR team will contact you soon</a> </li>
+                        <li><img alt=""   src="assets/images/profile-5.png"><a href="#">You updated your profile picture .</a> </li>
+                      </ul> -->
+                  </div>
+                </div>
+              <!--end logedin-->
+            </div>
+
+            <div ng-show="loggedInUserInfo.id && loggedInUserInfo.user_type == 2" class="ac_nav after_login_ac_nav">
+              <!-- logedin-->
+                 <div class="login_pop after_login" ng-class="{hv_img: loggedInUserInfo.profile.company_image}">
+                  <button class="btn btn-primary withdp">
+                    <i ng-if="!loggedInUserInfo.profile.company_image" class="fa fa-user" aria-hidden="true"></i>
+                    <img ng-if="loggedInUserInfo.profile.company_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.company_image}}"> {{loggedInUserInfo.profile.company_name}}
+                    <i class="fas fa-caret-down"></i>
+                  </button>
+                  <div class="login_pop_box login_pop_box_menu">
+                    <div class="login_pop_box_head">
+                      <div class=" "ng-class="{hv_img: loggedInUserInfo.profile.company_image}">
+                        <i ng-if="!loggedInUserInfo.profile.company_image" class="fa fa-user" aria-hidden="true"></i>
+                        <img ng-if="loggedInUserInfo.profile.company_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.company_image}}">
+                        <h5>{{loggedInUserInfo.profile.company_name}}</h5> 
+                        <h6>{{loggedInUserInfo.username}}</h6>
+                      </div>
+                    </div>
+                    <ul class="user_navigation">
+                        <li>
+                          <a ui-sref="company.dashboard"><i class="fas fa-border-all"></i>Dashboard </a>
+                        </li>
+                        <li>
+                          <a ui-sref="job-dashboard"><i class="fas fa-border-all"></i>Job Dashboard </a>
+                        </li>
+                        <li>
+                          <a ui-sref="company.jobpost"><i class="fas fa-paper-plane"></i>Post Job</a>
+                        </li>
+                        <li>
+                          <a ui-sref="company.jobs"><i class="far fa-list-alt"></i>My job listings</a>
+                        </li>
+                        <li>
+                          <a ui-sref="company.profile"><i class="fas fa-user"></i>Update My Profile</a>
+                        </li>
+                        <li>
+                          <a ui-sref="company.settings"><i class="fas fa-key"></i>Change Password</a>
+                        </li>
+                        <li>
+                          <a href="#" ng-click="logout()"><i class="fas fa-power-off"></i> Logout</a>
+                        </li>
+                      </ul>
+                  </div>
+                </div>
+                <div class="login_pop after_login">
+                  <button class="btn btn-msg">
+                    <i class="fas fa-bell"></i>
+                    <span class="msg-count">2</span>
+                   </button>
+                  <div class="login_pop_box job_seekernotifi ">
+                      <h6>Notifications</h6>
+                      <!-- <ul>
+                        <li><img alt=""   src="assets/images/profile-1.png"><a href="#"> John Stone applying this job  contact  </a> </li>
+                        <li><img alt=""   src="assets/images/profile-2.png"><a href="#">Nguta Ithya  applying this job  contact  </a> </li>
+                        <li><img alt=""   src="assets/images/profile-4.png"><a href="#">Salome Simoes applying this job</a> </li>
+                      </ul> -->
+                  </div>
+                </div>
+              <!--end logedin-->
+            </div>
+
+          </div>
+        </div>
+      </div>
+ 
+    

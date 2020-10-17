@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 63.1 (101010) - https://sketch.com -->
+    <title>BDB6C987-CD12-401B-BC13-7C86183CF19E</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <circle id="path-1" cx="15" cy="15" r="15"></circle>
+        <filter x="-16.7%" y="-13.3%" width="133.3%" height="133.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Search-result" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.699999988">
+        <g id="view-all-dropdown" transform="translate(-1365.000000, -1461.000000)">
+            <g id="Group-13" transform="translate(1368.000000, 1463.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M19.9997917,17.99975 C19.7438023,17.99975 19.487813,17.901757 19.2928211,17.7067709 L15,13.4140776 L10.7071789,17.7067709 C10.3161952,18.097743 9.68422149,18.097743 9.29323778,17.7067709 C8.90225407,17.3157989 8.90225407,16.683844 9.29323778,16.2928719 L14.2930295,11.2932291 C14.6840132,10.902257 15.3159868,10.902257 15.7069705,11.2932291 L20.7067622,16.2928719 C21.0977459,16.683844 21.0977459,17.3157989 20.7067622,17.7067709 C20.5117703,17.901757 20.255781,17.99975 19.9997917,17.99975 Z M15,24 C14.448,24 14,23.553 14,23 L14,12 C14,11.448 14.448,11 15,11 C15.552,11 16,11.448 16,12 L16,23 C16,23.553 15.552,24 15,24 Z M21,9 L9,9 C8.448,9 8,8.552 8,8 C8,7.448 8.448,7 9,7 L21,7 C21.553,7 22,7.448 22,8 C22,8.552 21.553,9 21,9 Z" id="Shape" fill="#474747" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

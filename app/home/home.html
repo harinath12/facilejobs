@@ -1,0 +1,208 @@
+<section class="home-image">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 align-left">
+        <div class="img-content homepadd">
+          <h1>Aim Higher. Reach Farther. Dream Bigger.</h1>
+          <p class="p-text">A better career is out there. We'll help you find it.</br>
+            We're your first step to becoming everything you want to be</p>
+          </br>
+          <div class="serh-form">
+            <form class="form-inline">
+              <div class="form-group mb-2 col-sm-5 pdd0 pos-re search-parent-div">
+                <input autocomplete="off" ng-model="pageInfo.search.title" type="text" class="form-control" id="staticEmail2">
+                  
+                 <div class="filter_result">
+                   <div class="row h100">
+                     <div class="col-md-6 h100">
+                       <div ng-if="!pageInfo.search.title && recent_search_title.length">
+                         <h6 class="search_title">RECENT SEARCHES</h6>
+                         <div class="search_list">
+                          <ul>
+                            <li ng-click="$event.preventDefault();pageInfo.search.title=tt;search_job();" ng-repeat="tt in recent_search_title">{{tt}}</li>
+                          </ul>
+                         </div>
+                       </div>
+                       <div ng-if="pageInfo.search.title || recent_search_title.length == 0">
+                         <h6 class="search_title">ARE YOU LOOKING FOR</h6>
+                         <div class="search_list">
+                            <ul>
+                              <li ng-click="search_job2(tt);" ng-repeat="tt in home_data.data | filter: {title: pageInfo.search.title}">{{tt.title}}<span ng-if="tt.type == 'category'">({{tt.cnt}} Jobs)</span></li>
+                            </ul>
+                         </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 h100" style="border-left: 1px solid;">
+                       <h6 class="search_title">POPULAR KEYWORDS</h6>
+                       <div class="keyword_list">
+                        <span style="cursor: pointer;" ng-click="pageInfo.search.title=key.title;search_job();" ng-repeat="key in lov.keywords | orderBy: '-no_of_job'" ng-show="key.no_of_job != 0">{{key.title}}({{key.no_of_job}})</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <i class="fa fa-filter" aria-hidden="true"></i>
+                 <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <div class="form-group mb-2 col-sm-5 pdd0 pos-re search-parent-div">
+                <input autocomplete="off" ng-model="pageInfo.search.location" type="text" class="form-control" id="inputPassword2">
+                <div class="filter_result" style="right: 0;">
+                   <div class="row h100">
+                     <div class="col-md-6 h100">
+                       <h6 class="search_title">POPULAR KEYWORDS</h6>
+                       <div class="keyword_list">
+                        <span style="cursor: pointer;" ng-click="pageInfo.search.title=key.title;search_job();" ng-repeat="key in lov.keywords | orderBy: '-no_of_job'" ng-show="key.no_of_job != 0">{{key.title}}({{key.no_of_job}})</span>
+                       </div>
+                     </div>
+                     <div class="col-md-6 h100" style="border-left: 1px solid;">
+                       <div ng-if="!pageInfo.search.location && recent_search_title.length">
+                         <h6 class="search_title">RECENT SEARCHES</h6>
+                         <div class="search_list">
+                            <ul>
+                              <li ng-click="$event.preventDefault();pageInfo.search.location=tt;search_job();" ng-repeat="tt in recent_search_location">{{tt}}</li>
+                            </ul>
+                         </div>
+                       </div>
+                       <div ng-if="pageInfo.search.location || recent_search_title.length == 0">
+                         <h6 class="search_title">ARE YOU LOOKING FOR</h6>
+                         <div class="search_list">
+                           <li style="margin-left: 0;" ng-click="pageInfo.search.location=tt.title;search_job();" ng-repeat="tt in lov.location | filter: {title: pageInfo.search.location}">{{tt.title}}</li>
+                         </div>
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </div>
+              <button ng-click="search_job()" class="btn btn-success mb-2">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- home -->
+<section class="slider-section">
+  <div class="container text-center my-3 padd30 padd-bt20">
+    <div class="homepaddrl">
+      <h2>Featured Companies</h2>
+       <section class="customer-logos slider">
+          <div class="slide" ng-repeat="cm in home_data.featured_company" ui-sref="view_company({id: cm.id+'-'+cm.slug})">
+            <img width="150" height="100" src="{{cm.profile.profile_picture ? 'admin/api/uploads/'+cm.profile.profile_picture : 'html/images/company_placeholder.jpeg'}}">
+            <h5>{{cm.profile.company_name}}</h5>
+          </div>
+       </section>
+    </div>
+  </div>
+  </section>
+    <section class="slider-section2">
+      <div class="container text-left my-3 padd30">
+        <div class="homepaddrl">
+          <h2 class="font-weight-light text-center">Feautred Job Listings</h2>
+          <br>
+          <div id="carousel-two" class="carousel slide" carousel data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item" ng-class="{active: k == 0}" ng-repeat="(k,sli) in home_data.featured_jobs">
+                <div class="row">
+                <div class="col-sm-6" ng-repeat="job in sli">
+                  <div class="row fe-jb-ls">
+                    <div class="col-sm-4">
+                      <img style="width: 100%;max-height: 100%;" ng-src="{{job.company_image ? 'admin/api/uploads/'+job.company_image : 'html/images/company_placeholder.jpeg'}}">
+                    </div>
+                    <div class="col-sm-8">
+                   <h4 ui-sref="view_job({id: job.id})" class="active cp">{{job.title}}</h4>
+                    <p> Published {{job.posted_on | timeago}}</p>
+                   <hr>
+                   <p><i style="position: relative;top: 0;left: 0;" class="fa fa-map-marker"></i> {{job.location_name}}</p>
+                   </div>
+                  </div>
+                </div> 
+              </div> 
+            </div>  
+          </div>
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-two" data-slide-to="{{k}}" ng-class="{active: k == 0}" ng-repeat="(k,sli) in home_data.featured_jobs"></li>
+          </ol>
+          </div> 
+        </div>
+      </div>
+    </section>
+    <section class="bg-green">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 align-center">
+            <h2>Got a question?</h2>
+            <p>We're here to help.Contact us</p>
+            <button type="submit" class="btn bg-white mb-2" ng-click="show_modal('#contactModal')">Contact Us</button>
+            <div>
+            </div>
+          </div>
+    </section>
+    <section class="job_categor mrbtm-30">
+      <div class="container">
+        <div class="row homepaddrl">
+          <div class="col-sm-12">
+            <h2 style="margin-bottom:40px;">Popular Job Categories</h2>
+            <div class="row">
+              
+              <div class="col-sm-3 padd7" ng-if="cat.type == 'category'" ng-repeat="cat in home_data.data | orderBy : '-cnt'" ng-click="search_job2(cat);">
+                <div class="pop-jb">
+                <img src="{{'admin/api/uploads/'+cat.image}}">
+                <h4>{{cat.title}}</h4>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section ng-hide="loggedInUserInfo.id" class="signupsec">      
+        <div class="row" style="height: 300px">
+          <div class="col-sm-6 bg-green com_signup ">
+            <div class="container">
+              <i class="fa fa-laptop" aria-hidden="true"></i>
+              <h4>I am an Employer</h4>
+              <p>Signed in companies are able to post new job offer, searching for candidate...</p>
+              <button ng-click="openSignUp($event, '2');" class="btn bg-white mb-2">Register as Company</button>
+            </div>
+          </div>
+          <div class="col-sm-6 can_signup">
+            <div class="container">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <h4>I am a Candidate</h4>
+              <p>Signed in candidates are able to apply for new job offer, searching for companies...</p>
+              <button ng-click="openSignUp($event, '3');" class="btn bg-white mb-2">Register as Candidate</button>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section class="mapsec">      
+        <div class="container">
+          <div>
+            <h3>Gain access to our international talent pool<hr></h3>
+          </div>
+          <img src="html/images/elements/homepage/map.svg">         
+        </div>
+    </section>
+    <section class="appsec"> 
+        <div class="row container">
+          <div class="col-sm-6 clearfix"></div>
+          <div class="col-sm-6 appdown">
+            <h3>Download HOWMATCH App</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat vo</p>
+            <button type="submit" class="btn btn-success  mb-2">Get App for Android</button>
+            <button type="submit" class="btn btn-success mb-2">Get App for Apple</button>
+          </div>
+        </div>
+    </section>
+    <section>
+      <div class="sticky-container">
+        <div class="job_alert_sub">
+          <input class="job_alert_in" id="job_alert" type="text" name="email" placeholder="Receive Job alerts">     
+            <label for="job_alert"><img src="html/images/homepage/job_alert.svg"></label>       
+        </div>
+      </div>      
+    </section>
+  
+

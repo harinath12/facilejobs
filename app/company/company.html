@@ -1,0 +1,53 @@
+<main role="main" class="home_margin-top">
+  <div class="sub_header"><img src="html/images/elements/employer/Asset 1.png" class="img-fluid"></div>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4 left-menu db_padd">
+          <div class="pho-file" style="overflow: hidden;">
+            <div class="p-photo" ng-class="{hv_img: loggedInUserInfo.profile.company_image}">
+              <i ng-if="!loggedInUserInfo.profile.company_image" class="fa fa-user" aria-hidden="true"></i>
+              <img ng-if="loggedInUserInfo.profile.company_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.company_image}}">
+            </div>
+            <div class="pro-details">
+              <h3>{{loggedInUserInfo.profile.company_name}}</h3>
+              <p>{{loggedInUserInfo.username}}</p>
+            </div>
+          </div>
+            <nav class="navbar navbar-expand-md navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidemenu"
+                aria-controls="sidemenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-start" id="sidemenu">
+                <ul class="dash_menu top-menu">
+                  <li class="nav-item " ng-class="{active: currentState == 'company.dashboard'}">
+                    <img src="html/images/icons/download-business-statistics-symbol-of-a-graphic.svg" >
+                    <a class="nav-link" href="#" ui-sref="company.dashboard">Dashboard</a>
+                  </li>
+                  <li class="nav-item" ng-class="{active: currentState == 'company.profile'}">
+                   <img src="html/images/icons/user.svg"> <a class="nav-link" href="#" ui-sref="company.profile">Profile</a>
+                  </li>
+                  <li class="nav-item" ng-class="{active: currentState == 'company.jobs'}">
+                    <img src="html/images/icons/job-search-symbol-of-suitcase-and-curriculum-paper.svg"><a class="nav-link" href="#" ui-sref="company.jobs">Jobs</a>
+                  </li>
+                  <li class="nav-item" ng-class="{active: currentState == 'company.shortlist_candidates'}">
+                    <img src="html/images/icons/list.svg"><a class="nav-link" href="#" ui-sref="company.shortlist_candidates">Shortlisted Candidates</a>
+                  </li>
+                  <li class="nav-item" ng-class="{active: currentState == 'company.package'}">
+                    <img src="html/images/icons/download-business-statistics-symbol-of-a-graphic.svg"><a class="nav-link" href="#" ui-sref="company.mypackage">My Package</a>
+                  </li>
+                  <li class="nav-item" ng-class="{active: currentState == 'company.settings'}">
+                    <img src="html/images/icons/two-big-gears.svg"><a class="nav-link" href="#" ui-sref="company.settings">Settings</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>            
+        </div>
+        <div class="col-sm-8 db_padd db-view">
+          <ui-view id='childviews'></ui-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

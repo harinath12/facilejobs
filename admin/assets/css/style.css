@@ -1,0 +1,81 @@
+/*
+
+* Override Pages default styles or create your own styles here
+
+*/
+.card-title{
+	font-size: 20px!important; 
+}
+.no-pm{
+	margin:0 !important;
+	padding: 0 !important;
+}
+.pgn-wrapper{
+	z-index: 99999!important;
+    right: 30px !important;
+    top: 30px !important;
+}
+.submitted .form-group.invalid{
+	border:1px solid red;
+}
+.datepicker td.disabled{
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+.cp{
+	cursor: pointer;
+}
+.active_dt{
+	background: #17977c;
+	width: 30px;
+	height: 30px;
+	color: #fff;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 9px;
+}
+.inactive_dt{
+	background: #f35958;
+	width: 30px;
+	color: #fff;
+	height: 30px;
+	padding: 9px;
+	display: inline-block;
+	border-radius: 50%;
+}
+input[type="file"]{display: none;}
+.profile_picture{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	overflow: hidden;
+	border:1px solid #444;
+	background: #ccc;
+	margin-bottom: 20px;
+}
+.profile_picture img{
+	width: 100%;
+	height: auto;
+}
+.profile_picture+button{
+	height: 33px !important;
+    margin-left: 20px !important;
+    margin-top: 25px !important;
+}
+.icon-thumbnail i{
+	color: #fff;
+}
+.select2{
+	width: 100%!important;
+}
+.featured{
+  background: #17977c;
+  display: inline-block;
+  padding: 2px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+}
+.tox{
+	display: none;
+}

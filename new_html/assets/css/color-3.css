@@ -1,0 +1,25 @@
+
+:root {
+  --main-bg-color: #41d4d1;
+  --main-bgdark-color:#0d0945;  
+  --main-bg-gr-color:linear-gradient(90deg, #41d4d1, #74e8af);
+  --main-font-color: #6a696f;
+  --fontlight-color: #9a99b2;
+  --fontgreen-color: #1fc8d7;  
+  --thm-color-1: #ed1b24;
+  --thm-color-2: #1fc8d7;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #888888;
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: #333333
+}
+
+.navigation ul > li a{
+	color: var(--thm-color-1)
+}

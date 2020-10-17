@@ -1,0 +1,53 @@
+<header class="header_01 header_inner">
+  <div class="header_main">
+    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+      
+    </div>
+    <div class="header_btm">
+      <h2>Login</h2>
+    </div>
+  </div> 
+</header>
+
+<main>
+  <div class="only-form-pages">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="only-form-box">   
+            <form ng-if="pageInfo.login" name="loginform">
+              <div class="com_class_form">
+                <div class="form-group">
+              
+                  <input class="form-control" type="text" name="name" size="40" placeholder=" Username or email address * " ng-model="signupData.username">
+                </div>
+                <div class="form-group">
+                  
+                  <input class="form-control" type="password" name="email" placeholder=" Password * " ng-model="signupData.password">
+                </div>
+                
+                
+                <div class="form-group">
+                  <input class="btn btn-primary" type="submit" value="Login" ng-click="login(loginform.$valid)">
+                </div>
+                <div class="form-group form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> Remember me
+                  </label>
+                </div>
+                <div>
+                    <a class="lost_password"  ng-click="pageInfo.login=false;"> Lost your password?</a>
+                </div>
+              </div>
+            </form>
+            <div class="social_login ng-hide">
+              <p class="or_span"><span>or</span></p>
+              <button class="btn btn-facebook" ng-click="fbLogin()"><i class="fab fa-facebook-f"></i> Log In via Facebook</button>
+              <button class="btn btn-google" ng-click="gmailLogin()"><i class="fab fa-google-plus-g"></i> Login via Google+</button>
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

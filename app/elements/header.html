@@ -1,0 +1,49 @@
+<div class="container">
+  <nav class="navbar navbar-expand-md navbar-light  bg-white">
+    <div class="logo" ui-sref="home"><span class="text-success">How</span> Match</div>
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav top-menu">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" ui-sref="job_search">
+            <img src="html/images/homepage/find_a_job.svg">Find A Job <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <img src="html/images/homepage/post_a_job.svg">Post A Job</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" ui-sref="companies">
+            <img src="html/images/homepage/companies.svg">Companies</a>
+        </li>
+        <li class="nav-item" ng-show="!loggedInUserInfo.id">
+          <a class="nav-link" href="#"  ng-click="$event.preventDefault();show_modal('#signupModal')">
+            <img src="html/images/homepage/sign_up.svg">Sign Up</a>
+        </li>
+      </ul>
+        <ul class="navbar-nav top-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><select class="form-control form-control-sm s_lang">
+              <option>EN</option>
+            </select></a>
+        </li>
+        <li class="nav-item" ng-show="loggedInUserInfo.id">
+          <a class="nav-link" href="#" ng-if="loggedInUserInfo.user_type == 3" ui-sref="user.dashboard">
+            <img src="html/images/homepage/sign_up.svg">{{loggedInUserInfo.username}}</a>
+            <a class="nav-link" href="#" ng-if="loggedInUserInfo.user_type == 2" ui-sref="company.dashboard">
+            <img src="html/images/homepage/sign_up.svg">{{loggedInUserInfo.username}}</a>
+        </li>
+        <li class="nav-item" ng-show="!loggedInUserInfo.id">
+          <a class="nav-link" href="#"><button type="button" class="btn btn-outline-success btn-sm custo-bt" ng-click="$event.preventDefault();show_modal('#signinModal')">Login</button></a>
+        </li>
+        <li class="nav-item" ng-show="loggedInUserInfo.id">
+          <a class="nav-link" href="#" ng-click="$event.preventDefault();logout();"><button type="button" class="btn btn-outline-success btn-sm custo-bt">Logout</button></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
