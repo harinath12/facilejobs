@@ -1,147 +1,294 @@
-<div class="jumbotron" data-pages="parallax">
-  <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
-    <div class="inner">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#" ui-sref="dashboard">Home</a></li>
-        <li class="breadcrumb-item active">{{currentStateDetails.label}}</li>
-      </ol>
-    </div>
-  </div>
-</div>
-
-<div class=" container-fluid   container-fixed-lg bg-white">
-  <div class="card card-transparent">
-    <div class="card-header">
-      <div class="card-title">{{currentStateDetails.label}}</div>
-      <div class="clearfix"></div>
-      <div class="export-options-container"></div>
-    </div>
-    <div class="card-body">
-      <form role="form" name="settingsform" novalidate="" ng-class="{submitted: pageInfo.submitted1}">
-      
-        <h4>General Settings</h4>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: settingsform.stitle.$invalid}">
-                <label>Site Title</label>
-                <input name="stitle" required="" ng-model="settings_form_data.site_title" type="text" class="form-control">
-                 
-              </div>
-            </div> 
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: settingsform.aemail.$invalid}">
-                <label>Admin Email</label>
-                <input name="name" required="" ng-model="settings_form_data.admin_email" type="email" class="form-control">
-              </div>
-            </div>
-          </div>         
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: catform.mtag.$invalid}">
-                <label>Meta Tag</label>
-                <input name="mtag" ng-model="settings_form_data.meta_tag" required id="appDescription" type="text" class="form-control"></input>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: catform.mtag.$invalid}">
-                <label>Meta Description</label>
-                <textarea rows="5" name="mtag" ng-model="settings_form_data.meta_description" required id="appDescription2" type="text" class="form-control"></textarea>
-              </div>
-            </div>
-          </div>
-
-             <h4>Social Links</h4>
-             <div class="row"> 
-                <div class="col-sm-6">
-                  <div class="form-group form-group-default" ng-class="{invalid: settingsform.li.$invalid}">
-                    <label>LinkedIn</label>
-                    <input name="li" required="" ng-model="settings_form_data.li" type="text" class="form-control">
-                  </div>
-                </div>
-
-                <div class="col-sm-6">
-                  <div class="form-group form-group-default" ng-class="{invalid: settingsform.fb.$invalid}">
-                    <label>Facebook</label>
-                    <input name="fb" required="" ng-model="settings_form_data.fb" type="text" class="form-control">
-                  </div>
-                </div>
-             
-              <div class="col-sm-6">
-                <div class="form-group form-group-default" ng-class="{invalid: settingsform.twitter.$invalid}">
-                  <label>Twitter</label>
-                  <input name="twitter" required="" ng-model="settings_form_data.twitter" type="text" class="form-control">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group form-group-default" ng-class="{invalid: settingsform.ig.$invalid}">
-                  <label>Instagram</label>
-                  <input name="ig" required="" ng-model="settings_form_data.ig" type="text" class="form-control">
-                </div>
-              </div>
-             
-              <div class="col-sm-6">
-                <div class="form-group form-group-default" ng-class="{invalid: settingsform.yt.$invalid}">
-                  <label>YouTube</label>
-                  <input name="yt" required="" ng-model="settings_form_data.yt" type="text" class="form-control">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="form-group form-group-default" ng-class="{invalid: settingsform.ps.$invalid}">
-                  <label>Play store </label>
-                  <input name="ps" required="" ng-model="settings_form_data.ps" type="text" class="form-control">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <div class="form-group form-group-default" ng-class="{invalid: settingsform.as.$invalid}">
-                  <label>Apple Store</label>
-                  <input name="as" required="" ng-model="settings_form_data.as" type="text" class="form-control">
-                </div>
-              </div>
-            </div>
-          
-        
-      
-        <button ng-click="save(settingsform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Save</button>
-       
-         </form>
-      
-      <form role="form" name="changpform" novalidate="" ng-class="{submitted: pageInfo.submitted2}">
-      
-        <h4>Change Password</h4>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: changpform.old_password.$invalid}">
-                <label>Old Password</label>
-                <input ng-pattern="/^.{6,}$/"  name="old_password" required="" ng-model="changep_form_data.old_password" type="Password" class="form-control">
-              </div>
-            </div>
-          </div>   
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: changpform.password.$invalid}">
-                <label>New Password</label>
-                <input ng-pattern="/^.{6,}$/"  name="password" required="" ng-model="changep_form_data.password" type="password" class="form-control">
-              </div>
-            </div> 
-          </div>   
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: changpform.cpassword.$invalid}">
-                <label>Confirm Password</label>
-                <input ng-pattern="/^.{6,}$/"  name="cpassword" required="" compare-to="changep_form_data.password" ng-model="changep_form_data.cpassword" type="password" class="form-control">
-              </div>
-            </div> 
-          </div>   
-               
-      
-        <button ng-click="change_password(changpform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Save</button>
-       
-         </form>
-      
-    </div>
-  </div>
-</div>
-
-
+<div class="jumbotron" data-pages="parallax">
+
+  <div class=" container-fluid   container-fixed-lg sm-p-l-0 sm-p-r-0">
+
+    <div class="inner">
+
+      <ol class="breadcrumb">
+
+        <li class="breadcrumb-item"><a href="#" ui-sref="dashboard">Home</a></li>
+
+        <li class="breadcrumb-item active">{{currentStateDetails.label}}</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class=" container-fluid   container-fixed-lg bg-white">
+
+  <div class="card card-transparent">
+
+    <div class="card-header">
+
+      <div class="card-title">{{currentStateDetails.label}}</div>
+
+      <div class="clearfix"></div>
+
+      <div class="export-options-container"></div>
+
+    </div>
+
+    <div class="card-body">
+
+      <form role="form" name="settingsform" novalidate="" ng-class="{submitted: pageInfo.submitted1}">
+
+      
+
+        <h4>General Settings</h4>
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: settingsform.stitle.$invalid}">
+
+                <label>Site Title</label>
+
+                <input name="stitle" required="" ng-model="settings_form_data.site_title" type="text" class="form-control">
+
+                 
+
+              </div>
+
+            </div> 
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: settingsform.aemail.$invalid}">
+
+                <label>Admin Email</label>
+
+                <input name="name" required="" ng-model="settings_form_data.admin_email" type="email" class="form-control">
+
+              </div>
+
+            </div>
+
+          </div>         
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: catform.mtag.$invalid}">
+
+                <label>Meta Tag</label>
+
+                <input name="mtag" ng-model="settings_form_data.meta_tag" required id="appDescription" type="text" class="form-control">
+
+              </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: catform.mtag.$invalid}">
+
+                <label>Meta Description</label>
+
+                <textarea rows="5" name="mtag" ng-model="settings_form_data.meta_description" required id="appDescription2" type="text" class="form-control"></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+             <h4>Social Links</h4>
+
+             <div class="row"> 
+
+                <div class="col-sm-6">
+
+                  <div class="form-group form-group-default" ng-class="{invalid: settingsform.li.$invalid}">
+
+                    <label>LinkedIn</label>
+
+                    <input name="li" required="" ng-model="settings_form_data.li" type="text" class="form-control">
+
+                  </div>
+
+                </div>
+
+
+
+                <div class="col-sm-6">
+
+                  <div class="form-group form-group-default" ng-class="{invalid: settingsform.fb.$invalid}">
+
+                    <label>Facebook</label>
+
+                    <input name="fb" required="" ng-model="settings_form_data.fb" type="text" class="form-control">
+
+                  </div>
+
+                </div>
+
+             
+
+              <div class="col-sm-6">
+
+                <div class="form-group form-group-default" ng-class="{invalid: settingsform.twitter.$invalid}">
+
+                  <label>Twitter</label>
+
+                  <input name="twitter" required="" ng-model="settings_form_data.twitter" type="text" class="form-control">
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="form-group form-group-default" ng-class="{invalid: settingsform.ig.$invalid}">
+
+                  <label>Instagram</label>
+
+                  <input name="ig" required="" ng-model="settings_form_data.ig" type="text" class="form-control">
+
+                </div>
+
+              </div>
+
+             
+
+              <div class="col-sm-6">
+
+                <div class="form-group form-group-default" ng-class="{invalid: settingsform.yt.$invalid}">
+
+                  <label>YouTube</label>
+
+                  <input name="yt" required="" ng-model="settings_form_data.yt" type="text" class="form-control">
+
+                </div>
+
+              </div>
+
+
+
+              <div class="col-sm-6">
+
+                <div class="form-group form-group-default" ng-class="{invalid: settingsform.ps.$invalid}">
+
+                  <label>Play store </label>
+
+                  <input name="ps" required="" ng-model="settings_form_data.ps" type="text" class="form-control">
+
+                </div>
+
+              </div>
+
+
+
+              <div class="col-sm-6">
+
+                <div class="form-group form-group-default" ng-class="{invalid: settingsform.as.$invalid}">
+
+                  <label>Apple Store</label>
+
+                  <input name="as" required="" ng-model="settings_form_data.as" type="text" class="form-control">
+
+                </div>
+
+              </div>
+
+            </div>
+
+          
+        </form>
+        
+
+      
+
+        <button ng-click="save(settingsform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Save</button>
+
+       
+
+         
+
+      
+
+      <form role="form" name="changpform" novalidate="" ng-class="{submitted: pageInfo.submitted2}">
+
+      
+
+        <h4>Change Password</h4>
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.old_password.$invalid}">
+
+                <label>Old Password</label>
+
+                <input ng-pattern="/^.{6,}$/"  name="old_password" required="" ng-model="changep_form_data.old_password" type="Password" class="form-control">
+
+              </div>
+
+            </div>
+
+          </div>   
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.password.$invalid}">
+
+                <label>New Password</label>
+
+                <input ng-pattern="/^.{6,}$/"  name="password" required="" ng-model="changep_form_data.password" type="password" class="form-control">
+
+              </div>
+
+            </div> 
+
+          </div>   
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="form-group form-group-default" ng-class="{invalid: changpform.cpassword.$invalid}">
+
+                <label>Confirm Password</label>
+
+                <input ng-pattern="/^.{6,}$/"  name="cpassword" required="" compare-to="changep_form_data.password" ng-model="changep_form_data.cpassword" type="password" class="form-control">
+
+              </div>
+
+            </div> 
+
+          </div>   
+
+               
+
+      
+
+        <button ng-click="change_password(changpform)" id="add-app" type="button" class="btn btn-primary  btn-cons">Save</button>
+
+       
+
+         </form>
+
+      
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+

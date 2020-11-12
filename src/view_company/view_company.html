@@ -1,167 +1,167 @@
-<header class="header_01 header_inner">
-  <div class="header_main header_job_single_main" >
-    <div class="header_menu fixed-top"  ng-include="'src/elements/header.html'">      
-    </div>
-    <div class="header_btm header_job_single">
-  <div class="header_job_single_inner container">
-    <div class="poster_company">
-      <img  alt="brand logo" src="{{company.company_image ? 'admin/api/uploads/'+company.company_image : 'html/images/company_placeholder.jpeg'}}">
-    </div> 
-    <div class="poster_details">
-      <h2>{{company.company_name}} <span class="varified"><i class="fas fa-check"></i>Verified</span></h2>
-      <h5>{{company.category_name}}</h5>
-      <ul>
-        <li>
-          <div class="staff_rating">
-            <span>4.9</span>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-        </li>
-        <li>
-            <i class="fas fa-map-marker-alt"></i>
-           {{company.location_name}}
-        </li>
-        <li>
-            <i class="far fa-clock"></i>
-           {{company.founded.split('-')[0]}}
-        </li>
-      </ul>   
-    </div>
-    <div class="poster_action">
-      <a class="addtofav" title="add to favourite" href="#"><i class="far fa-heart"></i></a>
-      <a class="btn btn-third" href="#">Add Review</a>      
-    </div>
-    
-  </div>
-      
-    </div>
-  </div> 
-</header>
-
-
-<!-- End Header 02
-================================================== -->
-
-
-
-<!-- Main 
-================================================== -->
-<main>
-  <div class="single_job">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row ">
-            <div class="col-md-12 single_job_main">
-              <h2>About Company</h2>
-              <div ng-bind-html="company.description | to_trusted"></div>
-              <p>Team Size: {{company.teamsize}}</p> 
-                <p>Posted Job: {{company.no_of_posts}}</p>   
-                <p>Views: {{company.no_of_views}}</p>
-                <p>Location: {{company.location.join(', ')}}</p> 
-                <p>Since: {{company.founded.split('-')[0]}}</p>   
-                <p>Categories: {{company.category.join(', ')}}</p> 
-            </div>
-            <div class="section-divider"></div>
-            <div class="col-md-12 single_job_main">
-              <h2>Location</h2>
-              <iframe class="full-width-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3428.916507434128!2d76.78322631470263!3d30.748846681631466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1581932177674!5m2!1sen!2sin"  height="300" allowfullscreen=""></iframe>
-            </div>
-            <div class="section-divider"></div>
-            <section class="slider-section ng-hide ">
-              <div class="container  my-3 padd30 padd-bt20">
-                <div class="homepaddrl">
-                  <h2 class="">Our Office</h2>
-                  <br>
-                  <div id="carousel-one" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                      <div class="carousel-item">
-                        <ul class="silder-box">
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                        </ul>
-                      </div>
-                      <div class="carousel-item active">
-                        <ul class="silder-box">
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                        </ul>
-                      </div>
-                      <div class="carousel-item">
-                        <ul class="silder-box">
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                          <li><img src="html/images/company.jpg"></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <ol class="carousel-indicators">
-                      <li data-target="#carousel-one" data-slide-to="0" class=""></li>
-                      <li data-target="#carousel-one" data-slide-to="1" class="active"></li>
-                      <li data-target="#carousel-one" data-slide-to="2" class=""></li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-              </section>
-    <div class="section-divider"></div>
-            <div class="col-md-12 single_job_main">
-              <h2> Open Positions</h2>
-              <div class="row two_col featured_box_outer">
-            <div class="col-sm-6" ng-repeat="job in company.jobs">
-              <div class="featured_box ">
-                <div class="fb_image">
-                  <img  alt="brand logo" src="assets/images/c-logo-01.webp">
-                </div>
-                <div class="fb_content">
-                  <h4>{{job.title}}</h4>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        <i class="fas fa-landmark"></i>
-                        Magna Aliqua
-                      </a>
-                    </li> 
-                    <li>
-                      <a href="#">
-                        <i class="fas fa-map-marker-alt"></i>
-                        {{job.location}}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="far fa-clock"></i>
-                        {{job.posted_on | date: 'short'}}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="fb_action">
-                  <a title="add to favourite" href="#"><i class="far fa-heart"></i></a>
-                  <a class="btn btn-third" href="#">Apply Now</a>
-                  
-                </div>
-              </div>
-            </div>     
-            
-          </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+<header class="header_01 header_inner">
+  <div class="header_main header_job_single_main" >
+    <div class="header_menu fixed-top"  ng-include="'src/elements/header.html'">      
+    </div>
+    <div class="header_btm header_job_single">
+  <div class="header_job_single_inner container">
+    <div class="poster_company">
+      <img  alt="brand logo" src="{{company.company_image ? 'admin/api/uploads/'+company.company_image : 'html/images/company_placeholder.jpeg'}}">
+    </div> 
+    <div class="poster_details">
+      <h2>{{company.company_name}} <span class="varified"><i class="fas fa-check"></i>Verified</span></h2>
+      <h5>{{company.category_name}}</h5>
+      <ul>
+        <li>
+          <div class="staff_rating">
+            <span>4.9</span>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </li>
+        <li>
+            <i class="fas fa-map-marker-alt"></i>
+           {{company.location_name}}
+        </li>
+        <li>
+            <i class="far fa-clock"></i>
+           {{company.founded.split('-')[0]}}
+        </li>
+      </ul>   
+    </div>
+    <div class="poster_action">
+      <a class="addtofav" title="add to favourite" href="#"><i class="far fa-heart"></i></a>
+      <a class="btn btn-third" href="#">Add Review</a>      
+    </div>
+    
+  </div>
+      
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="single_job">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row ">
+            <div class="col-md-12 single_job_main">
+              <h2>About Company</h2>
+              <div ng-bind-html="company.description | to_trusted"></div>
+              <p>Team Size: {{company.teamsize}}</p> 
+                <p>Posted Job: {{company.no_of_posts}}</p>   
+                <p>Views: {{company.no_of_views}}</p>
+                <p>Location: {{company.location.join(', ')}}</p> 
+                <p>Since: {{company.founded.split('-')[0]}}</p>   
+                <p>Categories: {{company.category.join(', ')}}</p> 
+            </div>
+            <div class="section-divider"></div>
+            <div class="col-md-12 single_job_main">
+              <h2>Location</h2>
+              <iframe class="full-width-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3428.916507434128!2d76.78322631470263!3d30.748846681631466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1581932177674!5m2!1sen!2sin"  height="300" allowfullscreen=""></iframe>
+            </div>
+            <div class="section-divider"></div>
+            <section class="slider-section ng-hide ">
+              <div class="container  my-3 padd30 padd-bt20">
+                <div class="homepaddrl">
+                  <h2 class="">Our Office</h2>
+                  <br>
+                  <div id="carousel-one" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item">
+                        <ul class="silder-box">
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                        </ul>
+                      </div>
+                      <div class="carousel-item active">
+                        <ul class="silder-box">
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                        </ul>
+                      </div>
+                      <div class="carousel-item">
+                        <ul class="silder-box">
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                          <li><img src="html/images/company.jpg"></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <ol class="carousel-indicators">
+                      <li data-target="#carousel-one" data-slide-to="0" class=""></li>
+                      <li data-target="#carousel-one" data-slide-to="1" class="active"></li>
+                      <li data-target="#carousel-one" data-slide-to="2" class=""></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              </section>
+    <div class="section-divider"></div>
+            <div class="col-md-12 single_job_main">
+              <h2> Open Positions</h2>
+              <div class="row two_col featured_box_outer">
+            <div class="col-sm-6" ng-repeat="job in company.jobs">
+              <div class="featured_box ">
+                <div class="fb_image">
+                  <img  alt="brand logo" src="assets/images/c-logo-01.webp">
+                </div>
+                <div class="fb_content">
+                  <h4>{{job.title}}</h4>
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="fas fa-landmark"></i>
+                        Magna Aliqua
+                      </a>
+                    </li> 
+                    <li>
+                      <a href="#">
+                        <i class="fas fa-map-marker-alt"></i>
+                        {{job.location}}
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="far fa-clock"></i>
+                        {{job.posted_on | date: 'short'}}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="fb_action">
+                  <a title="add to favourite" href="#"><i class="far fa-heart"></i></a>
+                  <a class="btn btn-third" href="#">Apply Now</a>
+                  
+                </div>
+              </div>
+            </div>     
+            
+          </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </main>

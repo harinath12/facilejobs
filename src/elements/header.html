@@ -20,6 +20,9 @@
                 <li class="">
                   <a ui-sref="job_search">Search Job</a>                  
                 </li>
+                <li class="">
+                  <a ui-sref="companies">Companies</a>                  
+                </li>
                 <li class="" ng-show="!loggedInUserInfo.id || (loggedInUserInfo.id && loggedInUserInfo.user_type == 2)" class="ac_nav after_login_ac_nav">
                   <a ui-sref="company.jobpost">Post Job</a>
                  </li>
@@ -61,13 +64,13 @@
             <div ng-show="loggedInUserInfo.id && loggedInUserInfo.user_type == 3" class="ac_nav after_login_ac_nav">
               <!--logedin-->
                 <div class="login_pop after_login"  ng-class="{hv_img: loggedInUserInfo.profile.profile_image}">
-                  <button class="btn btn-primary withdp">  <i ng-if="!loggedInUserInfo.profile.profile_image" class="fa fa-user" aria-hidden="true"></i><img alt=""  ng-if="loggedInUserInfo.profile.profile_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.profile_image}}"> Hi {{loggedInUserInfo.profile ? loggedInUserInfo.profile.name : loggedInUserInfo.username}}  <i class="fas fa-caret-down"></i></button>
+                  <button class="btn btn-primary withdp">  <i ng-if="!loggedInUserInfo.profile.profile_image" class="fa fa-user" aria-hidden="true"></i><img alt=""  ng-if="loggedInUserInfo.profile.profile_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.profile_image}}"> Hi {{loggedInUserInfo.profile ? loggedInUserInfo.profile.first_name : loggedInUserInfo.username}}  <i class="fas fa-caret-down"></i></button>
                   <div class="login_pop_box login_pop_box_menu">
                     <div class="login_pop_box_head">
                       <div  ng-class="{hv_img: loggedInUserInfo.profile.profile_image}">
                         <i ng-if="!loggedInUserInfo.profile.profile_image" class="fa fa-user" aria-hidden="true"></i>
                         <img alt=""  ng-if="loggedInUserInfo.profile.profile_image" ng-src="{{'admin/api/uploads/'+loggedInUserInfo.profile.profile_image}}">
-                        <h5>{{loggedInUserInfo.profile ? loggedInUserInfo.profile.name : loggedInUserInfo.username}}</h5> 
+                        <h5>{{loggedInUserInfo.profile ? loggedInUserInfo.profile.first_name : loggedInUserInfo.username}}</h5> 
                         <h6>{{loggedInUserInfo.profile.job_title}}</h6>
                       </div>
                     </div>

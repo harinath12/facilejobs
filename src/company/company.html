@@ -1,66 +1,66 @@
-<header class="header_01 header_inner">
-  <div class="header_main">
-    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
-    </div>
-    <div class="header_btm">
-      <h2>{{currentstate.Label}}</h2>
-    </div>
-  </div> 
-</header>
-
-
-<!-- End Header 02
-================================================== -->
-
-
-
-<!-- Main 
-================================================== -->
-<main>
-  <div class="job_container">
-    <div class="container">
-      <div class="row job_main">
-        <div class="sidebar" >
-
-          <ul class="user_navigation">
-            <!--<li  >
-              <a ui-sref="candidate_search"><i class="fas fa-search"></i> Find Staff </a>
-            </li>-->
-            
-            <li class="is-active" >
-              <a ui-sref="company.dashboard">
-                <i class="fas fa-border-all"></i>Dashboard </a>
-              </li>
-          </ul>
-          <h5>Organize and Manage</h5>
-          <ul class="user_navigation">
-              <li>
-                <a ui-sref="job-dashboard({id: 0})"><i class="fas fa-border-all"></i>Job Dashboard </a>
-              </li>
-              <li >
-                <a ui-sref="company.jobpost"><i class="fas fa-paper-plane"></i>Post Job</a>
-              </li>
-              <li>
-                <a ui-sref="company.jobs"><i class="far fa-list-alt"></i> My job listings</a>
-              </li>
-              
-              
-          </ul>
-          <h5>Account</h5>
-          <ul class="user_navigation">
-            <li>
-                <a ui-sref="company.profile"><i class="fas fa-user"></i> Update My Profile</a>
-              </li>
-              <li >
-                <a ui-sref="company.settings"><i class="fas fa-key"></i>Change Password</a>
-              </li>
-              <li>
-                <a href="#" ng-click="logout()"><i class="fas fa-power-off"></i> Logout</a>
-              </li>
-          </ul>
-        </div>
-          <ui-view id='childviews'></ui-view>
-       </div>
-    </div>
-  </div>
+<header class="header_01 header_inner">
+  <div class="header_main">
+    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+    </div>
+    <div class="header_btm">
+      <h2>{{currentStateDetails.label}}</h2>
+    </div>
+  </div> 
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="job_container">
+    <div class="container">
+      <div class="row job_main">
+        <div class="sidebar" >
+
+          <ul class="user_navigation">
+            <!--<li  >
+              <a ui-sref="candidate_search"><i class="fas fa-search"></i> Find Staff </a>
+            </li>-->
+            
+            <li class="is-active" >
+              <a ui-sref="company.dashboard">
+                <i class="fas fa-border-all"></i>Dashboard </a>
+              </li>
+          </ul>
+          <h5>Organize and Manage</h5>
+          <ul class="user_navigation">
+              <li>
+                <a ui-sref="job-dashboard({id: 0})"><i class="fas fa-border-all"></i>Job Dashboard </a>
+              </li>
+              <li >
+                <a ui-sref="company.jobpost"><i class="fas fa-paper-plane"></i>Post Job</a>
+              </li>
+              <li>
+                <a ui-sref="company.jobs"><i class="far fa-list-alt"></i> My job listings</a>
+              </li>
+              
+              
+          </ul>
+          <h5>Account</h5>
+          <ul class="user_navigation">
+            <li>
+                <a ui-sref="company.profile"><i class="fas fa-user"></i> Update My Profile</a>
+              </li>
+              <li >
+                <a ui-sref="company.settings"><i class="fas fa-key"></i>Change Password</a>
+              </li>
+              <li>
+                <a href="#" ng-click="logout()"><i class="fas fa-power-off"></i> Logout</a>
+              </li>
+          </ul>
+        </div>
+          <ui-view id='childviews'></ui-view>
+       </div>
+    </div>
+  </div>
 </main>

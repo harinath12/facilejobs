@@ -1,0 +1,64 @@
+<header class="header_01 header_inner">
+
+  <div class="header_main">
+
+    <div class="header_menu fixed-top" ng-include="'src/elements/header.html'">
+
+    </div>
+
+    <div class="header_btm">
+
+      <h2>{{blogs[0].blog_title}}</h2>
+
+    </div>
+
+  </div> 
+
+</header>
+
+
+<!-- End Header 02
+================================================== -->
+
+
+
+<!-- Main 
+================================================== -->
+<main>
+  <div class="blog-listing">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="post_box singlepb">
+                <img alt="" ng-src="{{'admin/api/uploads/'+blogs[0].blog_image}}" class="img-responsive">
+                <div class="post_content">
+                  <h6>
+                    {{blogs[0].blog_title}}
+                  </h6>
+                  <div ng-bind-html="blogs[0].blog_content | to_trusted"></div>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="blog_sidebar">
+            <div class="single-job-sidebar">
+                <div class="sjs_box">
+                  <h3>Recent Posts</h3>
+                  <ul class="recentpost">
+                    <li><a href="blog-single.html">4 Secrets To Be Strategic About Your Job Search</a></li>
+                    <li><a href="blog-single.html">Why Long-Term Unemployment Isn’t As Bad As You Think</a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

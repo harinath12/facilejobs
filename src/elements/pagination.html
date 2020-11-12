@@ -1,22 +1,22 @@
-<div class="row" ng-if="pager.totalItems">
-    <div class="col-md-3" style="padding: 10px">
-        Showing {{pager.totalItems ? pager.startIndex+1 : 0}} - {{pager.endIndex+1}} of {{pager.totalItems}} {{pager.label}}
-    </div>
-    <div class="col-md-6 text-center" style="padding: 5px">
-        <ul ng-if="pager.pages.length" class="pagination">
-            <li ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)">
-                <a class="pgn"><i class="fas fa-angle-left"></i>Previous </a>
-            </li>
-            <li ng-repeat="page in pager.pages" ng-click="setPage(page)" ng-class="{active:pager.currentPage === page}">
-                <a> {{page}} </a>
-            </li>                
-            <li ng-click="setPage(pager.currentPage + 1)" ng-class="{disabled:pager.currentPage === pager.totalPages}">
-                <a class="pgn"> Next <i class="fas fa-angle-right"></i></a>
-            </li>
-        </ul>
-    </div>
-
-    <div ng-if="pager.totalPages > 1" class="col-md-3 text-right" style="padding: 10px">
-        Go to <input style="width: 50px;" type="number" ng-model="pageInfo.cpage" ng-change="setPage(pageInfo.cpage)">
-    </div>
+<div class="row" ng-if="pager.totalItems">
+    <div class="col-md-3" style="padding: 10px">
+        Showing {{pager.totalItems ? pager.startIndex+1 : 0}} - {{pager.endIndex+1}} of {{pager.totalItems}} {{pager.label}}
+    </div>
+    <div class="col-md-6 text-center" style="padding: 5px">
+        <ul ng-if="pager.pages.length" class="pagination">
+            <li ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)">
+                <a class="pgn"><i class="fas fa-angle-left"></i>Previous </a>
+            </li>
+            <li ng-repeat="page in pager.pages" ng-click="setPage(page)" ng-class="{active:pager.currentPage === page}">
+                <a> {{page}} </a>
+            </li>                
+            <li ng-click="setPage(pager.currentPage + 1)" ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="pgn"> Next <i class="fas fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="pager.totalPages > 1" class="col-md-3 text-right" style="padding: 10px">
+        Go to <input style="width: 50px;" type="number" ng-model="pageInfo.cpage" ng-change="setPage(pageInfo.cpage)">
+    </div>
 </div>

@@ -1,129 +1,129 @@
-<div class=" job_main_right">
-          <div class="row job_section">
-          <div class="col-sm-12">
-            <div class="jm_headings">
-                <h5>Post a job</h5>
-                <!-- <a class="btn btn-primary mypbtn" href="compnay-profile-single.html">Company profile</a> -->
-              </div>
-              <div class="section-divider">
-              </div>
-               <form  role="form" name="jobform" novalidate="" ng-class="{submitted: pageInfo.submitted}"> 
-      <div class="form-row">
-        <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.title.$invalid}"> 
-              <label for="name">Title</label>
-              <input type="text" class="form-control" required="" ng-model="job_form_data.title" id="name" placeholder="Job Title">
-            </div>
-            
-            <div class="col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.type.$invalid}">
-              <label for="">Types  </label>
-              <select class="form-control" required="" ng-model="job_form_data.type">
-                <option>Freelancer</option>
-                <option>Full Time</option>
-                <option>Part Time</option>
-              </select>
-            </div>
-        </div>
-        <div class="form-row">
-          <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.last_date.$invalid}">
-              <label for="">Application DeadLine</label>
-              <input autocomplete="off"  type="date" class="form-control" name="deadline" placeholder="" ng-model="job_form_data.last_date">
-          </div>
-            <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.jtype.$invalid}">
-              <label for="inputPassword4">Job Apply type </label>
-              <select class="form-control" required="" ng-model="job_form_data.jtype">
-                <option>Internal</option>
-                <option>External</option>
-              </select>          
-            </div>
-        </div>
-        <div class="form-row">
-          <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.salary.$invalid}">
-              <label for="">Salary  </label>
-              <input type="text" class="form-control" required="" name="deadline" placeholder="" ng-model="job_form_data.salary">
-          </div>
-            <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.experience.$invalid}">
-              <label for="inputPassword4">Experience(in years)</label>
-              <input type="text" ng-model="job_form_data.experience" required="" class="form-control" name="">         
-            </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.gender.$invalid}">
-            <label>Gender</label>
-            <select class="form-control" required="" ng-model="job_form_data.gender">
-              <option>Male</option>
-              <option>Female</option>
-              <option>Both</option>
-            </select>        
-          </div>
-           <div class="col-sm-6">
-              <div class="form-group form-group-default" ng-class="{invalid: jobform.tags.$invalid}">
-                <label>No of Posts</label>
-                <input  name="tags" ng-model="job_form_data.no_of_position" required  type="text" class="form-control" placeholder="">
-              </div>
-            </div>      
-        </div>              
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.category.$invalid}">
-            <label>Categories</label>
-            <select class="form-control" required="" ng-model="job_form_data.category">
-              <option ng-repeat="cat in category" value="{{cat.id}}">{{cat.name}}</option>         
-            </select>        
-          </div>      
-        </div>
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.description.$invalid}">
-            <label>Descripton</label>
-            
-            <div ckeditor="ckOptions" ng-model="job_form_data.description"></div>
-          </div>      
-        </div>
-        <div class="form-row">
-          <div class=" col-sm-12 form-group form-group-default">
-              <label for="">Location  </label>
-              <select class="form-control" select2 multiple="" ng-model="job_form_data.location">
-              <option ng-repeat="ind in lov.location" value="{{ind.id}}">{{ind.title}}</option>         
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.keywords.$invalid}">
-            <label>Tags</label>
-            <select class="form-control" name="keywords" multiple=""  select2 ng-model="job_form_data.keywords">
-              <option ng-repeat="ind in lov.keywords" value="{{ind.id}}">{{ind.title}}</option>         
-            </select>        
-          </div>      
-        </div>
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.industry.$invalid}">
-            <label>Industry</label>
-            <select class="form-control " multiple="" select2 ng-model="job_form_data.industry">
-              <option ng-repeat="ind in lov.industry" value="{{ind.id}}">{{ind.title}}</option>         
-            </select>        
-          </div>      
-        </div>
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.qualification.$invalid}">
-            <label>Qualification</label>
-            <select class="form-control" multiple="" select2 ng-model="job_form_data.qualification">
-              <option ng-repeat="edu in lov.education" value="{{edu.id}}">{{edu.title}}</option>        
-            </select>        
-          </div>      
-        </div>
-        <div class="form-row">
-          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.job_level.$invalid}">
-            <label>Career Level</label>
-            <select select2 class="form-control " multiple="" ng-model="job_form_data.job_level">
-              <option ng-repeat="jl in lov.joblevel" value="{{jl.id}}">{{jl.title}}</option>         
-            </select>        
-          </div>      
-        </div>
-
-       <div class="text-right">               
-          <button ng-click="save_job(jobform)" type="submit" class="btn btn-success">Post Job</button>
-      </div>
-    </form>   
-          </div>
-          </div>  
-           
-                    
+<div class=" job_main_right">
+          <div class="row job_section">
+          <div class="col-sm-12">
+            <div class="jm_headings">
+                <h5>Post a job</h5>
+                <!-- <a class="btn btn-primary mypbtn" href="compnay-profile-single.html">Company profile</a> -->
+              </div>
+              <div class="section-divider">
+              </div>
+               <form  role="form" name="jobform" novalidate="" ng-class="{submitted: pageInfo.submitted}"> 
+      <div class="form-row">
+        <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.title.$invalid}"> 
+              <label for="name">Title</label>
+              <input type="text" class="form-control" required="" ng-model="job_form_data.title" id="name" placeholder="Job Title">
+            </div>
+            
+            <div class="col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.type.$invalid}">
+              <label for="">Types  </label>
+              <select class="form-control" required="" ng-model="job_form_data.type">
+                <option>Freelancer</option>
+                <option>Full Time</option>
+                <option>Part Time</option>
+              </select>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.last_date.$invalid}">
+              <label for="">Application DeadLine</label>
+              <input autocomplete="off"  type="date" class="form-control" name="deadline" placeholder="" ng-model="job_form_data.last_date">
+          </div>
+            <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.jtype.$invalid}">
+              <label for="inputPassword4">Job Apply type </label>
+              <select class="form-control" required="" ng-model="job_form_data.jtype">
+                <option>Internal</option>
+                <option>External</option>
+              </select>          
+            </div>
+        </div>
+        <div class="form-row">
+          <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.salary.$invalid}">
+              <label for="">Salary  </label>
+              <input type="text" class="form-control" required="" name="deadline" placeholder="" ng-model="job_form_data.salary">
+          </div>
+            <div class=" col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.experience.$invalid}">
+              <label for="inputPassword4">Experience(in years)</label>
+              <input type="text" ng-model="job_form_data.experience" required="" class="form-control" name="">         
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-6 form-group form-group-default" ng-class="{invalid: jobform.gender.$invalid}">
+            <label>Gender</label>
+            <select class="form-control" required="" ng-model="job_form_data.gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Both</option>
+            </select>        
+          </div>
+           <div class="col-sm-6">
+              <div class="form-group form-group-default" ng-class="{invalid: jobform.tags.$invalid}">
+                <label>No of Posts</label>
+                <input  name="tags" ng-model="job_form_data.no_of_position" required  type="text" class="form-control" placeholder="">
+              </div>
+            </div>      
+        </div>              
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.category.$invalid}">
+            <label>Categories</label>
+            <select class="form-control" required="" ng-model="job_form_data.category">
+              <option ng-repeat="cat in category" value="{{cat.id}}">{{cat.name}}</option>         
+            </select>        
+          </div>      
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.description.$invalid}">
+            <label>Descripton</label>
+            
+            <div ckeditor="ckOptions" ng-model="job_form_data.description"></div>
+          </div>      
+        </div>
+        <div class="form-row">
+          <div class=" col-sm-12 form-group form-group-default">
+              <label for="">Location  </label>
+              <select class="form-control" select2 multiple="" ng-model="job_form_data.location">
+              <option ng-repeat="ind in lov.location" value="{{ind.id}}">{{ind.title}}</option>         
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.keywords.$invalid}">
+            <label>Tags</label>
+            <select class="form-control" name="keywords" multiple=""  select2 ng-model="job_form_data.keywords">
+              <option ng-repeat="ind in lov.keywords" value="{{ind.id}}">{{ind.title}}</option>         
+            </select>        
+          </div>      
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.industry.$invalid}">
+            <label>Industry</label>
+            <select class="form-control " multiple="" select2 ng-model="job_form_data.industry">
+              <option ng-repeat="ind in lov.industry" value="{{ind.id}}">{{ind.title}}</option>         
+            </select>        
+          </div>      
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.qualification.$invalid}">
+            <label>Qualification</label>
+            <select class="form-control" multiple="" select2 ng-model="job_form_data.qualification">
+              <option ng-repeat="edu in lov.education" value="{{edu.id}}">{{edu.title}}</option>        
+            </select>        
+          </div>      
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12 form-group form-group-default" ng-class="{invalid: jobform.job_level.$invalid}">
+            <label>Career Level</label>
+            <select select2 class="form-control " multiple="" ng-model="job_form_data.job_level">
+              <option ng-repeat="jl in lov.joblevel" value="{{jl.id}}">{{jl.title}}</option>         
+            </select>        
+          </div>      
+        </div>
+
+       <div class="text-right">               
+          <button ng-click="save_job(jobform)" type="submit" class="btn btn-success">Post Job</button>
+      </div>
+    </form>   
+          </div>
+          </div>  
+           
+                    
         </div>
