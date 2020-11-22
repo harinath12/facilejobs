@@ -388,6 +388,23 @@ function routes($stateProvider, $urlRouterProvider) {
             controller: 'blogsController'
 
         },
+        {
+
+            name: 'partner',
+
+            label: 'Partner Companies',
+
+            auth: true,
+
+            restricted:false,
+
+            url: '/partner',
+
+            templateUrl: 'app/partner/partner.html',
+
+            controller: 'partnerController'
+
+        },
 
         {
 

@@ -347,3 +347,11 @@ function hm_getblog(){
 	return array('status' => 'Success', 'data' => $response);
 
 }
+
+function hm_getpartner(){
+
+	$response = get_results('select * from partners');
+
+	return array('status' => 'Success', 'data' => $response);
+
+}

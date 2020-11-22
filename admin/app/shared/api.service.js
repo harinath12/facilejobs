@@ -850,6 +850,61 @@ apiService.hm_education = function(){
 
     }
 
+    apiService.hm_partners = function(){
+
+        return httpService.get(APIURL+'hm_partners')
+
+        .then(function (res) {
+
+            return res['data'];
+
+        });
+
+    }
+
+
+
+    apiService.hm_save_partners= function(data){
+
+        return httpService.post(APIURL+'hm_save_partners', data)
+
+        .then(function (res) {
+
+            return res['data'];
+
+        });
+
+    }
+
+
+
+
+
+    apiService.hm_delete_partners= function(id){
+
+        return httpService.post(APIURL+'hm_delete_partners', {delete:[id]})
+
+        .then(function (res) {
+
+            return res['data'];
+
+        });
+
+    }
+
+
+
+     apiService.hm_change_partners_status = function(st, id){
+
+        return httpService.post(APIURL+'hm_change_partners_status', {status: st, id:id})
+
+        .then(function (res) {
+
+            return res['data'];
+
+        });
+
+    }
 
 
 
