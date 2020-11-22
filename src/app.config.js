@@ -1595,11 +1595,19 @@ hmapp.filter('shortContent', function () {
 
     return function (item, maxLength) {
 
+        var div = document.createElement('div');
+        div.innerHTML = item;
+
+        item = div.innerText;
+
         if((item || "").length < maxLength){
 
             return item;
 
         } else {
+
+            var div = document.createElement('div');
+            div.innerHTML = item;
 
             var trimmedString = (item || "").substr(0, maxLength);
 
