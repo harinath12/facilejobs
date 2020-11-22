@@ -138,9 +138,9 @@ function get_home_data(){
 
 	}
 
-	$blogs = get_results("select * from blogs order by id desc limit 0,3 ");
+	$blogs = get_results("select * from blogs where status = 1 order by id desc limit 0,3 ");
 
-	$partners = get_results("select * from partners order by id desc limit 0,3 ");
+	$partners = get_results("select * from partners where status = 1 order by id desc limit 0,3 ");
 
 	$cnt = [];
 	$cnt['job'] = get_row("select count(*) as cnt from jobs");
