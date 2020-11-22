@@ -202,9 +202,20 @@ AOS.init({
 
     $scope.home_data = {};
 
+    $scope.search_res = [];
+
     ApiService.get_home_data().then(function(res){
         $scope.home_data = res;
         
+        angular.forEach(res.data, function(v,k){
+            var filter = $scope.search_res.filter(function(a){
+                return v.title.trim().toUpperCase() == a.title.trim().toUpperCase();
+            });
+            if(filter.length == 0){
+                $scope.search_res.push(v);
+            }
+        });
+
         angular.forEach($rootScope.lov, function(v,k){
             angular.forEach(v, function(v1,k1){
                 if(k == 'category'){

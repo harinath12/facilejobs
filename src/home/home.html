@@ -1,3 +1,4 @@
+<div ng-click="pageInfo.showdd1 = false;pageInfo.showdd2 = false;">
 <header class="header_04">
   <div class="header_main">
      <div class="header_menu fixed-top"  ng-include="'src/elements/header.html'">
@@ -24,30 +25,7 @@
               </div>
               <div class="col-md-12" data-aos="fade-down" data-aos-delay="200">
                 <div class="banner_form_cont" >
-                  <form>
-                    <div class="banerSearch" data-aos="fade-up" data-aos-delay="200">
-                      <div class="fild-wrap fw-job-title">
-                        <i class="fas fa-briefcase"></i>
-                        <select ng-model="pageInfo.search.title" select2  name="state">
-                          <option value=""> JOB TITLE, SKILL, INDUSTRY</option>
-                          <option ng-repeat="key in home_data.data | orderBy: 'title'" value="{{key.title}}">{{key.title}}</option>
-                        </select>
-                      </div>
-                      <div class="fild-wrap fw-job-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <select ng-model="pageInfo.search.location" select2 name="state">
-                          <option value="">Location</option>
-                          <option ng-repeat="key in lov.location" value="{{key.title}}">{{key.title}}</option>
-                        </select>
-                      </div>
-                      <div class="fild-wrap fw-submit">
-                        <button class="btn btn-primary" ng-click="search_job()" value="">
-                           <i class="material-icons">search</i> SEARCH JOBS
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="user_type">
+                  <div class="user_type" style="margin-top: 138px;">
                     <div class="row">
                       <div class="col-md-6" >
                         <div class="user_type_inner  user_type_seeker" data-aos="fade-up" data-aos-delay="200">
@@ -81,6 +59,30 @@
                       </div>
                     </div>
                   </div>
+                  <form style="overflow: visible;top:-138px;left: 0;right: 0;position: absolute;">
+                    <div class="banerSearch" data-aos="fade-up" data-aos-delay="200">
+                      <div class="fild-wrap fw-job-title">
+                        <i class="fas fa-briefcase"></i>
+                        <input ng-click="$event.stopPropagation();pageInfo.showdd1=true;" ng-model="pageInfo.search.title" type="" placeholder="JOB TITLE, SKILL, INDUSTRY" name="">
+                        <div ng-show="pageInfo.showdd1" ng-class="{'have_val': pageInfo.search.title && pageInfo.search.title.length > 2}" class="dd-container">
+                          <div ng-repeat="key in search_res | orderBy: 'title' | filter: {title: pageInfo.search.title}" ng-click="pageInfo.search.title=key.title">{{key.title}}</div>
+                        </div>
+                      </div>
+                      <div class="fild-wrap fw-job-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input ng-click="$event.stopPropagation();pageInfo.showdd2=true;" ng-model="pageInfo.search.location"  type="" placeholder="Location" name="">
+                        <div ng-show="pageInfo.showdd2" ng-class="{'have_val': pageInfo.search.location && pageInfo.search.location.length > 2}" class="dd-container">
+                          <div ng-repeat="key in lov.location | orderBy: 'title' | filter: {title: pageInfo.search.location}" ng-click="pageInfo.search.location=key.title">{{key.title}}</div>
+                        </div>
+                      </div>
+                      <div class="fild-wrap fw-submit">
+                        <button class="btn btn-primary" ng-click="search_job()" value="">
+                           <i class="material-icons">search</i> SEARCH JOBS
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                  
                 </div>
               </div>
             </div>
@@ -129,99 +131,15 @@
     <div class="container">
       <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Popular Job Categories</h2>
       <div class="row">
-        <div class="col-md-3" >
+        <div class="col-md-3" ng-repeat="cat in lov.category | orderBy : '-no_of_job'" ng-if="$index < 8">
           <div class="category_box" >
             <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-code.png">
-              <span class="job_count">363</span>
+              <img width="64" alt="" ng-src="{{cat.image ? 'admin/api/uploads/'+cat.image : 'new_html/assets/images/i-code.png'}}">
+              <span class="job_count">{{cat.no_of_job}}</span>
             </div>
             <div class="cb_bottom">
-              <h3>Web & Software Dev</h3>
-              <p>Software Engineer, Web / Mobile Developer &amp; More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-server.png">
-              <span class="job_count">572</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Data Science & Analitycs</h3>
-              <p>Data Specialist / Scientist, Data Analyst & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-calculator.png">
-              <span class="job_count">252</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Accounting & Consulting</h3>
-              <p>Auditor, Accountant, Fnancial Analyst & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-pan.png">
-              <span class="job_count">523</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Writing & Translations</h3>
-              <p>Copywriter, Creative Writer, Translator & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-chart.png">
-              <span class="job_count">98</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Sales & Marketing</h3>
-              <p>Brand Manager, Marketing Coordinator & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-graphic.png">
-              <span class="job_count">53</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Graphics & Design</h3>
-              <p>Creative Director, Web Designer & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3" >
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-digital.png">
-              <span class="job_count">75</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Digital Marketing</h3>
-              <p>Darketing Analyst, Social Profile Admin & More</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="category_box" >
-            <div class="cb_header">
-              <img alt=""  src="new_html/assets/images/i-education.png">
-              <span class="job_count">366</span>
-            </div>
-            <div class="cb_bottom">
-              <h3>Education & Training</h3>
-              <p>Advisor, Coach, Education Coordinator & More</p>
+              <h3>{{cat.name}}</h3>
+              <p>{{cat.description | shortContent:100}}</p>
             </div>
           </div>
         </div>
@@ -381,42 +299,42 @@
       <div class="bg-v-2 bg-b-r">
       </div>
     </div>
-    <div class="container">
+    <div class="container" ng-show="home_data.blogs.length">
       <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Recent Blog Posts</h2>
       <div class="row">
-        <div class="col-md-4" data-aos="fade-left" data-aos-delay="600">
+        <div ng-show="home_data.blogs[0]" class="col-md-4" data-aos="fade-left" data-aos-delay="600">
           <div class="post_box">
-            <img  alt="" src="new_html/assets/images/blog1.jpeg" class="img-responsive">
+            <img  alt="" ng-src="{{'admin/api/uploads/'+home_data.blogs[0].blog_image}}" class="img-responsive">
             <div class="post_content">
               <h6>
-                <a href="#">Social Media Turns You To Socialize Your Business</a>
+                <a ui-sref="blog({id: home_data.blogs[0].id})">{{home_data.blogs[0].blog_title}}</a>
               </h6>
-              <p>We know that you possess a long list of questions to ask us. To sort out all your queries and doubts, we have emerged with the most interesting facts… </p>
-              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+              <p ng-bind="home_data.blogs[0].blog_content | shortContent:150"></p>
+              <a class="btn btn-secondary btn-rounded" ui-sref="blog({id: home_data.blogs[0].id})">Continue reading</a>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div ng-show="home_data.blogs[1]" class="col-md-4">
           <div class="post_box">
-            <img  alt="" src="new_html/assets/images/blog2.jpeg" class="img-responsive">
+            <img  alt="" ng-src="{{'admin/api/uploads/'+home_data.blogs[1].blog_image}}" class="img-responsive">
             <div class="post_content">
               <h6>
-                <a href="#">Create More Space For Seo & Garner Myriad Of Customers</a>
+                <a ui-sref="blog({id: home_data.blogs[1].id})">{{home_data.blogs[1].blog_title}}</a>
               </h6>
-              <p>SEO stands for Search Engine Optimization. SEO is the process of driving more users to your website by creating true and accurate content. It is the major process of obtaining more traffic from organic and free search engines… </p>
-              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+              <p ng-bind="home_data.blogs[1].blog_content | shortContent:150"></p>
+              <a class="btn btn-secondary btn-rounded" ui-sref="blog({id: home_data.blogs[1].id})">Continue reading</a>
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="fade-right" data-aos-delay="600">
+        <div ng-show="home_data.blogs[2]" class="col-md-4" data-aos="fade-right" data-aos-delay="600">
           <div class="post_box">
-            <img  alt="" src="new_html/assets/images/blog3.jpeg" class="img-responsive">
+            <img  alt="" ng-src="{{'admin/api/uploads/'+home_data.blogs[2].blog_image}}" class="img-responsive">
             <div class="post_content">  
               <h6>
-                <a href="#">Can Anyone Start Digital Marketing?</a>
+                <a ui-sref="blog({id: home_data.blogs[2].id})">{{home_data.blogs[2].blog_title}}</a>
               </h6>
-              <p>Yes, anybody can start their own digital marketing business. Unlike other industries, anyone can do it without any formal qualification to run your own business… </p>
-              <a class="btn btn-secondary btn-rounded" href="#">Continue reading</a>
+              <p ng-bind="home_data.blogs[2].blog_content | shortContent:150"></p>
+              <a class="btn btn-secondary btn-rounded" ui-sref="blog({id: home_data.blogs[2].id})">Continue reading</a>
             </div>
           </div>
         </div>
@@ -431,14 +349,14 @@
       </div>
     </div>
     <div class="container">
-      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">HowMatch Status</h2>
+      <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Facilejob Status</h2>
       
       <div class="row justify-content-center">
         <div class="col-auto">
           <div class="status_box" data-aos="fade-in" data-aos-delay="600">
             <img alt=""  data-aos="fade-up" data-aos-delay="1000" src="new_html/assets/images/i-paper-plane.png">
 
-            <h3>83</h3>
+            <h3>{{home_data.cnt.job.cnt}}</h3>
             <p>Job Posted.</p>
           </div>
         </div>
@@ -446,22 +364,22 @@
           <div class="status_box" data-aos="fade-in" data-aos-delay="800">
             <img alt=""  data-aos="fade-up" data-aos-delay="1200" src="new_html/assets/images/i-doctor.png">
             
-            <h3>16</h3>
-            <p>Job Filled.</p>
+            <h3>{{home_data.cnt.user.cnt}}</h3>
+            <p>Job Seekers</p>
           </div>
         </div>
         <div class="col-auto">
           <div class="status_box" data-aos="fade-in" data-aos-delay="1000">
             <img alt=""  data-aos="fade-up" data-aos-delay="1400" src="new_html/assets/images/i-company.png">
-            <h3>36</h3>
+            <h3>{{home_data.cnt.company.cnt}}</h3>
             <p>Companies</p>
           </div>
         </div>
         <div class="col-auto">
           <div class="status_box" data-aos="fade-in" data-aos-delay="1200">
             <img alt=""  data-aos="fade-up" data-aos-delay="1600" src="new_html/assets/images/i-mamber.png">
-            <h3>175</h3>
-            <p>Members</p>
+            <h3>{{home_data.featured_company.length}}</h3>
+            <p>Featured jobs</p>
           </div>
         </div>
       </div>
@@ -477,35 +395,11 @@
     <div class="container">
       <h2 data-aos="fade-up" data-aos-delay="400" class="section_h">Our Partners</h2>
       <ul class="partner_carousel owl-carousel owl-theme">
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/anandsgroup.jpg"></a>
+        <li ng-repeat="partner in home_data.partners">
+          <a target="_blank" href="{{partner.url}}"><img   alt="{{partner.company_name}}" ng-src="{{'admin/api/uploads/'+partner.image}}"></a>
         </li>
-        <li>
-          <a href="#"><img  alt="brand logo" src="new_html/assets/images/lafs.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/atv.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/dragonfly.jpg"></a>
-        </li>
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/kalasalingam.jpg"></a>
-        </li> 
-        <!--<li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/glogoimg1.png"></a>
-        </li>-->
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/flyingstart.png"></a>
-        </li>
-        
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/LOGOAIHT.png"></a>
-        </li>
-        <li>
-          <a href="#"><img   alt="brand logo" src="new_html/assets/images/mip.png"></a>
-        </li> 
       </ul>
     </div>
   </div>
 </main>
+</div>

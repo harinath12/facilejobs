@@ -1083,3 +1083,22 @@ form.newsletter .btn {
 .pad0{
   padding:0!important;
 }
+.home_page .dd-container{
+  display: none;
+  position: absolute;
+  background: #fff;
+  width: calc(100% - 40px);
+  left: 40px;
+  max-height: 250px;
+  overflow: auto;
+}
+.home_page .dd-container > div{
+  cursor: pointer;
+  padding: 0 10px;
+}
+.home_page .dd-container > div:hover{
+  background: #ddd;
+}
+.home_page .dd-container.have_val{
+  display: block;
+}
