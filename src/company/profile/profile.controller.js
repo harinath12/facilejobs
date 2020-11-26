@@ -15,13 +15,17 @@ function companyProfileController(DATA, $rootScope, $scope, $state, ApiService, 
 
 	$scope.save = function(flag){
 		if(flag){
+			$rootScope.preloader = true
 			ApiService.company_profile($scope.profile).then(function(){
-				ApiService.notification('Profile updated successfully', 'Success');
-				$state.reload();
+				//ApiService.notification('Profile updated successfully', 'Success');
+				$state.go('company.dashboard');
+				$rootScope.preloader = true
 			});
 		} else {
 			ApiService.notification('Please fill all required fields', 'Error');
 		}
+
+
 	};
 
 	$scope.addGallery = function(){

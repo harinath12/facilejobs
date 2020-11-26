@@ -14,9 +14,9 @@
 
       <div class="col-sm-12">
 
-        <p ng-if="!pageInfo.edit"><span ui-sref="view_company({id: loggedInUserInfo.id+'-'+profile.slug})" style="text-decoration: underline;color: ">www.howmatch.com/company/{{loggedInUserInfo.id}}-{{profile.slug}}</span><span ng-click="pageInfo.edit=true" class="edit_url cp"><i class="fa fa-edit"></i>Edit</span></p>
+        <p ng-if="!pageInfo.edit"><span ui-sref="view_company({id: loggedInUserInfo.id+'-'+profile.slug})" style="text-decoration: underline;color: ">https://facilejobs.com/company/{{loggedInUserInfo.id}}-{{profile.slug}}</span><span ng-click="pageInfo.edit=true" class="edit_url cp"><i class="fa fa-edit"></i>Edit</span></p>
 
-        <p ng-if="pageInfo.edit"><span>www.howmatch.com/company/{{loggedInUserInfo.id}}-<input  ng-model="profile.slug"></span><span ng-click="pageInfo.edit=false;change_slug(profile.slug)" class="edit_url cp"><i class="fa fa-save"></i>save</span></p>
+        <p ng-if="pageInfo.edit"><span>https://facilejobs.com/company/{{loggedInUserInfo.id}}-<input  ng-model="profile.slug"></span><span ng-click="pageInfo.edit=false;change_slug(profile.slug)" class="edit_url cp"><i class="fa fa-save"></i>save</span></p>
 
       </div>
 
@@ -239,7 +239,7 @@
             <div class="form-group col-sm-12">
 
               <label>Location</label>
-
+              
               <select ng-model="profile.location" required class="form-control" select2 multiple="">
 
                 <option ng-repeat="ind in lov.location" value="{{ind.id}}">{{ind.title}}

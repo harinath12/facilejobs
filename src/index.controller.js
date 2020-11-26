@@ -49,7 +49,7 @@ function indexController($rootScope, $scope, $state, ApiService, $window, $timeo
 
         $('.tooltip').removeClass('show');
 
-        if(toState.name != fromState.name){
+        if((toState.name != fromState.name) || (toParams.id != fromParams.id && toState.name == fromState.name )){
 
             $("html, body").animate({ scrollTop: 0 }, "slow");
 

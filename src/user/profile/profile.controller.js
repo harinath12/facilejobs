@@ -15,9 +15,11 @@ function userProfileController(DATA, $rootScope, $scope, $state, ApiService, $wi
 
 	$scope.save = function(flag){
 		if(flag){
+			$rootScope.preloader = true
 			ApiService.user_profile($scope.profile).then(function(){
-				ApiService.notification('Profile updated successfully', 'Success');
-				$state.reload();
+				//ApiService.notification('Profile updated successfully', 'Success');
+				$state.go('user.dashboard');
+				$rootScope.preloader = false;
 			});
 		} else {
 			ApiService.notification('Please fill all required fields', 'Error');

@@ -1102,3 +1102,6 @@ form.newsletter .btn {
 .home_page .dd-container.have_val{
   display: block;
 }
+.header_main{
+  z-index: 9999999;
+}

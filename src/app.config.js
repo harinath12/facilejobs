@@ -851,7 +851,7 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
 
             name: 'view_candidate',
 
-            label: 'View Candidates',
+            label: 'View Candidate',
 
             auth: false,
 
@@ -1328,6 +1328,14 @@ hmapp.directive("select2", function(){
 
 
             $(element).on("select2:select", function (e) { 
+
+                ngModel.$setViewValue($(this).val());
+
+                $(this).trigger('change');
+
+            });
+
+            $(element).on("select2:unselect", function (e) { 
 
                 ngModel.$setViewValue($(this).val());
 

@@ -83,6 +83,7 @@
           </div>
           <div class="form-group">
             <label for="Location">Location</label>
+            
             <select ng-model="profile.location" required class="form-control" select2 multiple="">
                 <option ng-repeat="ind in lov.location" value="{{ind.id}}">{{ind.title}}
               </select>

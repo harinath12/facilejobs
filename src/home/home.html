@@ -64,14 +64,14 @@
                       <div class="fild-wrap fw-job-title">
                         <i class="fas fa-briefcase"></i>
                         <input ng-click="$event.stopPropagation();pageInfo.showdd1=true;" ng-model="pageInfo.search.title" type="" placeholder="JOB TITLE, SKILL, INDUSTRY" name="">
-                        <div ng-show="pageInfo.showdd1" ng-class="{'have_val': pageInfo.search.title && pageInfo.search.title.length > 2}" class="dd-container">
+                        <div ng-show="pageInfo.showdd1" ng-class="{'have_val': pageInfo.search.title && pageInfo.search.title.length}" class="dd-container">
                           <div ng-repeat="key in search_res | orderBy: 'title' | filter: {title: pageInfo.search.title}" ng-click="pageInfo.search.title=key.title">{{key.title}}</div>
                         </div>
                       </div>
                       <div class="fild-wrap fw-job-location">
                         <i class="fas fa-map-marker-alt"></i>
                         <input ng-click="$event.stopPropagation();pageInfo.showdd2=true;" ng-model="pageInfo.search.location"  type="" placeholder="Location" name="">
-                        <div ng-show="pageInfo.showdd2" ng-class="{'have_val': pageInfo.search.location && pageInfo.search.location.length > 2}" class="dd-container">
+                        <div ng-show="pageInfo.showdd2" ng-class="{'have_val': pageInfo.search.location && pageInfo.search.location.length}" class="dd-container">
                           <div ng-repeat="key in lov.location | orderBy: 'title' | filter: {title: pageInfo.search.location}" ng-click="pageInfo.search.location=key.title">{{key.title}}</div>
                         </div>
                       </div>

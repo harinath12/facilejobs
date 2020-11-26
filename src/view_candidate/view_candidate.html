@@ -8,7 +8,7 @@
       <img  alt="brand logo" src="{{'admin/api/uploads/'+candidate.profile_image}}">
     </div> 
     <div class="poster_details">
-      <h2>{{candidate.name}}  <span class="varified"><i class="fas fa-check"></i>Verified</span></h2>
+      <h2>{{candidate.first_name}} {{candidate.last_name}} <span class="varified"><i class="fas fa-check"></i>Verified</span></h2>
       <h5>{{candidate.job_title}}</h5>
       <div class="staff_rating">
         <span>4.5</span>
@@ -20,8 +20,9 @@
       </div>    
     </div>
     <div class="poster_action">
-      <a class="addtofav" title="add to favourite" href="#"><i class="far fa-heart"></i></a>
-      <a class="btn btn-third" href="#">Hire me</a>
+      <a class="addtofav" title="shortlist" href="#" ng-click="shortlist_candidate()">
+        <i ng-hide="candidate.shortlisted==1" class="far fa-heart"></i> <i class="fas fa-heart" ng-show="candidate.shortlisted==1"></i></a>
+      
       
     </div>
   </div>
@@ -46,7 +47,7 @@
           <div class="row ">
             <div class="col-md-12 single_job_main">
               <h4>About Me</h4><hr>
-            <p>{{candidate.aboutme}}</p>
+            <div ng-bind-html="candidate.aboutme | to_trusted"></div>
             </div>
             <div class="section-divider"></div>
             <div class="col-md-12 single_job_main">
@@ -107,7 +108,7 @@
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
                   <h6>Current Location</h6>
-                  <p>{{candidate.location}}</p>
+                  <p>{{candidate.location_name}}</p>
                 </li>
                <li>
                   <i class="fas fa-money-bill-alt"></i>
@@ -128,12 +129,12 @@
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
                   <h6>Prefered Location</h6>
-                  <p>{{candidate.preferred_location}}</p>
+                  <p>{{candidate.preferred_location_name}}</p>
                 </li>
                 <li>
                   <i class="fas fa-user-md"></i>
                   <h6>Prefered Job level</h6>
-                  <p ng-repeat='pjl in candidate.preferred_joblevel'>{{pjl.}}</p> 
+                  <p >{{candidate.preferred_joblevel_name}}</p> 
                 </li>                
               </ul>
             </div>

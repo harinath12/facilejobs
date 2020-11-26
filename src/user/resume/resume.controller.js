@@ -135,7 +135,7 @@ function resumeController(DATA, $rootScope, $scope, $state, ApiService, $window,
 		$scope.profile.benefits_list = JSON.stringify($scope.profile.benefits);
 		delete $scope.profile.benefits;
 		ApiService.user_profile($scope.profile).then(function(){
-			ApiService.notification('Profile updated successfully', 'Success');
+			//ApiService.notification('Profile updated successfully', 'Success');
 			$state.reload();
 		});
 	};

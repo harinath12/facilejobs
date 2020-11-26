@@ -8,6 +8,18 @@ function viewcandidateController($stateParams,DATA, $rootScope, $scope, $state, 
 
 	$scope.candidate = DATA.data;
 
+	$arr = {location: 'location', industry: 'industry', keywords: 'keywords', preferred_location: 'location',
+	 preferred_joblevel: 'joblevel', preferred_category: 'category'};
+    angular.forEach($arr, function(a,b){
+        $scope.candidate[b+'_name'] = [];
+        angular.forEach($scope.candidate[b], function(l){
+        	var ld = $rootScope.lov_obj[a][l] ? $rootScope.lov_obj[a][l] : '';
+            
+            $scope.candidate[b+'_name'].push(ld);
+        });
+        $scope.candidate[b+'_name'] = $scope.candidate[b+'_name'].join(',');
+    });
+
 	if($scope.candidate.benefits_list){
 		$scope.candidate.benefits_list=JSON.parse($scope.candidate.benefits_list);
 	}
